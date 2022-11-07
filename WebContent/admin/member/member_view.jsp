@@ -31,6 +31,7 @@
                         <td>
                             <c:choose>
                             <c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when>
+                            <c:when test="${dto.getMember_type() == 'exit'}">탈퇴회원</c:when>
                             <c:otherwise>일반회원</c:otherwise>
                             </c:choose>
                         </td>

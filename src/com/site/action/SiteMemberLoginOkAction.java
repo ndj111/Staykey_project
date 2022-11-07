@@ -11,6 +11,7 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MemberDAO;
 import com.model.MemberDTO;
+import com.model.WishDAO;
 
 public class SiteMemberLoginOkAction implements Action {
 
@@ -19,6 +20,7 @@ public class SiteMemberLoginOkAction implements Action {
 		// 로그인 시 아이디, 비밀번호, 회원/관리자 구분 대조
 
 		MemberDAO dao = MemberDAO.getInstance();
+		WishDAO wdao = WishDAO.getInstance();
 
 		String login_id = request.getParameter("login_id").trim();
 		String login_pw = request.getParameter("login_pw").trim();
@@ -45,6 +47,7 @@ public class SiteMemberLoginOkAction implements Action {
             session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "admin");
 			session.setAttribute("login_reserv", dao.reservCount(dto.getMember_id()));
+			session.setAttribute("login_wish", wdao.getTotalCount(dto.getMember_id()));
 
 			request.setAttribute("login_msg", "<script>alert('관리자 로그인 성공!');</script>");
 			forward.setRedirect(false);
@@ -58,6 +61,7 @@ public class SiteMemberLoginOkAction implements Action {
             session.setAttribute("login_phone", dto.getMember_phone());
 			session.setAttribute("login_type", "user");
 			session.setAttribute("login_reserv", dao.reservCount(dto.getMember_id()));
+			session.setAttribute("login_wish", wdao.getTotalCount(dto.getMember_id()));
 
 			forward = null;
 			out.println("<script>alert('"+dto.getMember_name()+"님 안녕하세요 :-)'); location.href='index.jsp';</script>");

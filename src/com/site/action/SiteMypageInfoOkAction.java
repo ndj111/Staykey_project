@@ -3,18 +3,12 @@ package com.site.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.controller.Action;
 import com.controller.ActionForward;
-import com.model.MagazineDAO;
-import com.model.MagazineDTO;
 import com.model.MemberDAO;
 import com.model.MemberDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -24,112 +18,116 @@ public class SiteMypageInfoOkAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		
-		// dto, dao 생성
-		MemberDTO dto = new MemberDTO();
-		MemberDAO dao = MemberDAO.getInstance();
 
-		
-		// 파일 업로드 설정
-		String thisFolder = "/data/member/";
+        MemberDAO dao = MemberDAO.getInstance();
+	    PrintWriter out = response.getWriter();
+
+
+	    // 파일 업로드 설정
+		String thisFolder = "/data/profile/";
 		String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
 		int fileSize = 25 * 1024 * 1024; // 10MB
-		
 
 		// 업로드 폴더 체크 후 없으면 생성
 		File dirChk = new File(saveFolder);
 		if (!dirChk.exists()) {
 			dirChk.mkdir();
 		}
-		
 
 		// 파일 업로드 객체 생성
-		MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8",
-				new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 
-		
-		// 파라미터 정리
-		String member_id = multi.getParameter("member_id");
-		String member_email = multi.getParameter("member_email");
-		String member_name = multi.getParameter("member_name");
-		String member_phone = multi.getParameter("member_phone");
-		String mypage_pw = multi.getParameter("mypage_pw");
 
-		
-		dto.setMember_id(member_id);
-		dto.setMember_email(member_email);
-		dto.setMember_name(member_name);
-		dto.setMember_phone(member_phone);
-		dto.setMember_pw(mypage_pw);
-		
-		
-		// 순서 지정 문제 해결 위함
-		// 새로 업로드된 파일
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member_photo", multi.getFile("member_photo"));
+		// 입력값 정리
+		String modify_id = multi.getParameter("modify_id").trim();
+		String modify_email = multi.getParameter("modify_email").trim();
+		String modify_name = multi.getParameter("modify_name").trim();
+		String modify_phone = multi.getParameter("modify_phone").trim();
+		String modify_pw = multi.getParameter("modify_pw").trim();
+		String now_pw = multi.getParameter("now_pw").trim();
 
-		
-		// 기존 파일 정보 가져오기 위함
-		MemberDTO originalDTO = dao.getMemberInfo(member_id);
-		
-		String original_member_photo = originalDTO.getMember_photo();
 
-		
-		// delete folder 현재 경로 받아옴
-		String delFolder = request.getSession().getServletContext().getRealPath("/");
+        // 현재 비밀번호 체크
+        MemberDTO ndto = new MemberDTO();
+        ndto = dao.getMemberInfo(modify_id);
+        if(!ndto.getMember_pw().equals(now_pw)){
+            out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.\\n다시 확인 후 입력해주세요.'); history.back();</script>");
+            return null;
+        }
 
-		Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator(); // iterator로 다음 값 가져옴
-		String original_file = ""; // 예전 파일 변수로 지정
 
-		while (iterator.hasNext()) {
-			Entry<String, Object> e = iterator.next();
-			File file = (File) e.getValue(); // map에 저장된 파일 객체의 value 값만 얻어와서 File형으로 casting
+		// 회원정보 객체에 저장
+        MemberDTO dto = new MemberDTO();
+		dto.setMember_id(modify_id);
+		dto.setMember_email(modify_email);
+		dto.setMember_name(modify_name);
+		dto.setMember_phone(modify_phone);
 
-			switch (e.getKey()) { // original file 값 할당
-			case "member_photo":
-				original_file = original_member_photo;
-				break;
-			}
-
-			if (file != null) { // value 값이 null이 아니면(new file 있음)
-				File del_image = new File(delFolder + original_file);
-				if (del_image.exists()) {
-					del_image.delete();
-				}
-				String fileExt = file.toString().substring(file.toString().lastIndexOf(".") + 1); // 확장자 분리
-				String fileRename = e.getKey() + "_modify_" + System.currentTimeMillis() + "." + fileExt; // 파일 rename
-				file.renameTo(new File(saveFolder + fileRename)); // file을 인자로 전달된 파일의 경로로 변경
-				map.replace(e.getKey(), thisFolder + fileRename); // 현재 key 값에 새로운 value 값을 map에 저장
-			} else { // new file 없으면
-				
-				if (original_file != null) {// 예전 파일이 null이 아니면
-					map.replace(e.getKey(), original_file); // 예전 값 할당
-				} else {
-					map.replace(e.getKey(), ""); // null 값 처리 위함
-				}
-			}
+		if(modify_pw != null && modify_pw.length() > 0){
+		    dto.setMember_pw(modify_pw);
+		}else{
+		    dto.setMember_pw(now_pw);
 		}
 
-		dto.setMember_photo(map.get("member_photo").toString());
 
-		
-		// 수정 업로드 메서드
-		int res = dao.membersiteModify(dto);
+        // 첨부파일 이름 변경 처리
+        File modify_photo = multi.getFile("modify_photo");
+        if(modify_photo != null) {
+            String fileExt = modify_photo.getName().substring(modify_photo.getName().lastIndexOf(".") + 1);
+            String member_photo_flie_rename = modify_id + "_" + System.currentTimeMillis() + "." + fileExt;
+            modify_photo.renameTo(new File(saveFolder + "/" + member_photo_flie_rename));
 
-		
-		// 포워드 실행
+            // DB에 저장되는 파일 이름
+            // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
+            String fileDBName = thisFolder + member_photo_flie_rename;
+            dto.setMember_photo(fileDBName);
+        }
+
+
+		// 새로운 파일을 등록하고, 기존 파일 있으면 삭제 처리
+        if(modify_photo != null && ndto.getMember_photo() != null){
+            File del_pimage = new File(saveFolder+ndto.getMember_photo().replace(thisFolder, ""));
+            if(del_pimage.exists()){
+                if(del_pimage.delete()) {
+                    System.out.println("프로필 파일 삭제 완료");
+                }else {
+                    System.out.println("프로필 파일 삭제 실패");
+                }
+            }else{
+                System.out.println("파일 경로를 찾을 수 없습니다.");
+            }
+        }
+
+
 		ActionForward forward = new ActionForward();
-		PrintWriter out = response.getWriter();
+		int result = dao.infoModifySite(dto);
 
-		if (res > 0) {
+		if(result > 0){
 			forward.setRedirect(true);
 			forward.setPath("mypageInfo.do");
-		} else {
-			out.println("<script> alert('회원 정보 수정 중 에러가 발생했습니다.'); history.back(); </script>");
-			}
-			return forward;
-		}
-}
 
+		}else{
+		    // 에러 중 등록 된 파일 삭제
+		    String upload_photo = modify_photo.getName();
+	        if(upload_photo != null){
+	            File del_pimage = new File(saveFolder+upload_photo);
+	            if(del_pimage.exists()){
+	                if(del_pimage.delete()) {
+	                    System.out.println("에러 중 등록 된 파일 삭제 완료");
+	                }else {
+	                    System.out.println("에러 중 등록 된 파일 삭제 실패");
+	                }
+	            }else{
+	                System.out.println("에러 중 등록 된 파일 경로를 찾을 수 없습니다.");
+	            }
+	        }
+
+		    forward = null;
+			out.println("<script>alert('회원 정보 수정 중 에러가 발생했습니다.'); history.back();</script>");
+		}
+
+		return forward;
+	}
+
+}
 

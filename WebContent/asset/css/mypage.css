@@ -568,63 +568,190 @@
 
 
 /* 회원 정보 수정 */
-
-
-
-
-
-/* 회원 정보 수정 버튼 */
-.btn_bk {
-    color: #fff;
-    background: #000;
-    border: 1px solid #000;
+.info-modify {}
+.info-modify h3.im-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
 }
 
-
-.btn_wh {
-    color: #000000;
-    background: #ffffff;
-    border: 1px solid #000;
+.info-modify .im-wrap {
+    width: 100%;
+    margin: 30px 0 10px 0;
 }
 
-
-/* 비밀번호 입력 창*/
-
-
- .checked {
-    margin: 8px 0;
-    justify-content: space-between;
-} 
-
-.checked li {
-    font-size: 14px;
-    font-weight: 400;
-    color: #bbb;
-    
+.info-modify .im-photo {
+    position: absolute;
+    top: 63px;
+    right: 12.65%;
+    width: 150px;
+    margin: 0 auto;
 }
-.checked li:before {
-    font-family: 'FontAwesome';
-    content: "\f00c";
-    margin-right: 3px;
+.info-modify .im-photo .imp-tit {
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 20px;
 }
-.checked li.on {
-    color: var(--color);
+.info-modify .im-photo .imp-show {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    text-indent: -999999px;
+    overflow: hidden;
+    background-color: #ededed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-.error {
+.info-modify .im-photo .imp-file {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: url('../images/profile_icon.png') no-repeat 50%;
+    background-size: cover;
+    text-indent: -999999px;
+}
+
+.info-modify .im-form {
+    clear: both;
+    position: relative;
+    width: 55.26%;
+    padding-top: 45px;
+    margin-bottom: -30px;
+}
+.info-modify .im-form > div {
+    margin-bottom: 30px;
+}
+.info-modify .im-form label {
+    font-size: 12px;
+    color: #000;
+}
+.info-modify .im-form label:hover {
+    cursor: default;
+}
+.info-modify .im-form input {
+    width: 100%;
+    height: 46px;
+    margin-top: 2px;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    color: 000;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.info-modify .im-form input:focus {
+    border-color: var(--color);
+}
+.info-modify .im-form input::placeholder {
+    font-size: 15px;
+    font-weight: 300;
+    color: #aaa;
+    letter-spacing: -1px;
+}
+.info-modify .im-form input[type="number"]::-webkit-outer-spin-button,
+.info-modify .im-form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.info-modify .im-form p.error {
     color: var(--color);
     margin: 8px 0;
     display: none;
 }
-
-
-.status {
-	    font-size: 20px;
-	    color: #bbb;
+.info-modify .im-form .checked {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.info-modify .im-form .checked li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #bbb;
+}
+.info-modify .im-form .checked li:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    margin-right: 3px;
+}
+.info-modify .im-form .checked li.on {
+    color: var(--color);
 }
 
-.status_notyet {
-		font-size: 20px;
-	    color: #000000;
+.info-modify .im-form .imf-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
 }
+.info-modify .im-form .imf-btn .submit {
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+.info-modify .im-form .imf-btn .submit:hover {
+    opacity: 0.8;
+}
+.info-modify .im-form .imf-btn .exit {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+    text-decoration: underline;
+}
+.info-modify .im-form .imf-btn .exit:hover {
+    color: var(--color);
+}
+
+
+#member-exit {}
+#member-exit .modal-footer {}
+#member-exit .modal-footer form {
+    position: relative;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+#member-exit .modal-footer button {
+    width: 150px;
+    height: 45px;
+    font-size: 16px;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+    text-align: center;
+}
+#member-exit .modal-footer button:hover {
+    opacity: 0.8;
+}
+#member-exit .modal-footer button.exit {
+    color: #333;
+    background: #fff;
+    margin-right: 10px;
+}
+#member-exit .modal-footer button.exit:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+
+
+
+
+
+
+
 
 
