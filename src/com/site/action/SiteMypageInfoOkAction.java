@@ -71,7 +71,7 @@ public class SiteMypageInfoOkAction implements Action {
 		}
 
 
-        // 첨부파일 이름 변경 처리
+        // 새로운 파일을 등록하고, 기존 파일 있으면 삭제 처리
         File modify_photo = multi.getFile("modify_photo");
         if(modify_photo != null) {
             String fileExt = modify_photo.getName().substring(modify_photo.getName().lastIndexOf(".") + 1);
@@ -82,24 +82,24 @@ public class SiteMypageInfoOkAction implements Action {
             // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
             String fileDBName = thisFolder + member_photo_flie_rename;
             dto.setMember_photo(fileDBName);
+
+            // 기존 파일 있으면 삭제 처리
+            if(ori_photo != null){
+                File del_pimage = new File(saveFolder+ori_photo.replace(thisFolder, ""));
+                if(del_pimage.exists()){
+                    if(del_pimage.delete()) {
+                        System.out.println("프로필 파일 삭제 완료");
+                    }else {
+                        System.out.println("프로필 파일 삭제 실패");
+                    }
+                }else{
+                    System.out.println("파일 경로를 찾을 수 없습니다.");
+                }
+            }
         }else{
             dto.setMember_photo(ori_photo);
         }
 
-
-		// 새로운 파일을 등록하고, 기존 파일 있으면 삭제 처리
-        if(modify_photo != null && ndto.getMember_photo() != null){
-            File del_pimage = new File(saveFolder+ndto.getMember_photo().replace(thisFolder, ""));
-            if(del_pimage.exists()){
-                if(del_pimage.delete()) {
-                    System.out.println("프로필 파일 삭제 완료");
-                }else {
-                    System.out.println("프로필 파일 삭제 실패");
-                }
-            }else{
-                System.out.println("파일 경로를 찾을 수 없습니다.");
-            }
-        }
 
 
 		ActionForward forward = new ActionForward();
@@ -111,19 +111,21 @@ public class SiteMypageInfoOkAction implements Action {
 
 		}else{
 		    // 에러 중 등록 된 파일 삭제
-		    String upload_photo = modify_photo.getName();
-	        if(upload_photo != null){
-	            File del_pimage = new File(saveFolder+upload_photo);
-	            if(del_pimage.exists()){
-	                if(del_pimage.delete()) {
-	                    System.out.println("에러 중 등록 된 파일 삭제 완료");
-	                }else {
-	                    System.out.println("에러 중 등록 된 파일 삭제 실패");
-	                }
-	            }else{
-	                System.out.println("에러 중 등록 된 파일 경로를 찾을 수 없습니다.");
-	            }
-	        }
+		    if(multi.getFile("modify_photo") != null){
+    		    String upload_photo = modify_photo.getName();
+    	        if(upload_photo != null){
+    	            File del_pimage = new File(saveFolder+upload_photo);
+    	            if(del_pimage.exists()){
+    	                if(del_pimage.delete()) {
+    	                    System.out.println("에러 중 등록 된 파일 삭제 완료");
+    	                }else {
+    	                    System.out.println("에러 중 등록 된 파일 삭제 실패");
+    	                }
+    	            }else{
+    	                System.out.println("에러 중 등록 된 파일 경로를 찾을 수 없습니다.");
+    	            }
+    	        }
+		    }
 
 		    forward = null;
 			out.println("<script>alert('회원 정보 수정 중 에러가 발생했습니다.'); history.back();</script>");

@@ -18,8 +18,8 @@ import com.util.eventDate;
 public class EventDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
-	ResultSet rs = null;
 	PreparedStatement pstmt2 = null;
+	ResultSet rs = null;
 	ResultSet rs2 = null;
 	String sql = null;
 	String sql2 = null;

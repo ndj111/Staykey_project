@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <jsp:include page="../layout/layout_header.jsp" />
 <jsp:include page="../mypage/mypage_header.jsp" />
 <script type="text/javascript">$("#mymenu-qna").addClass("now");</script>
@@ -15,28 +18,24 @@
 
         <tr>
             <th>제목</th>
-            <td colspan="2">
-                <input type="text" name="bbs_title" value="" maxlength="200" class="w-100" required />
-            </td>
+            <td><input type="text" name="bbs_title" value="" maxlength="200" class="w-100" required /></td>
         </tr>
         <tr>
             <th>내용</th>
-            <td colspan="2">
-            	<textarea name="bbs_content" cols="80" rows="10" required></textarea>
-            </td>
+            <td><textarea name="bbs_content" cols="80" rows="10" required></textarea></td>
         </tr>
 
         <tr>
-            <td colspan="3" class="space" nowrap="nowrap"></td>
+            <td colspan="2" class="space" nowrap="nowrap"></td>
         </tr>
 
         <tr>
             <th>첨부 파일 #1</th>
-            <td colspan="2"><input type="file" name="bbs_file1" /></td>
+            <td><input type="file" name="bbs_file1" /></td>
         </tr>
         <tr>
             <th>첨부 파일 #2</th>
-            <td colspan="2"><input type="file" name="bbs_file2" /></td>
+            <td><input type="file" name="bbs_file2" /></td>
         </tr>
     </table>
 

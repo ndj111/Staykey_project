@@ -108,22 +108,22 @@
         <div class="col-lg mb-5">
             <h4>답변 목록</h4>
 
-            <table class="table-form">
+            <table class="table-form comment-list">
                 <colgroup>
                     <col width="18%" />
                     <col />
                     <col width="15%" />
-                    <c:if test="${dto.bbs_status == 'send'}"><col width="30%" /></c:if>
+                    <c:if test="${dto.bbs_status == 'send'}"><col width="15%" /></c:if>
                 </colgroup>	
 
                 <c:choose>
                 <c:when test="${!empty qList }">
                 <thead>
                     <tr>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성일</th>
-                        <c:if test="${dto.bbs_status == 'send'}"><th>기능</th></c:if>
+                        <th class="text-center">작성자</th>
+                        <th class="text-center">내용</th>
+                        <th class="text-center">작성일</th>
+                        <c:if test="${dto.bbs_status == 'send'}"><th class="text-center">기능</th></c:if>
                     </tr>
                 </thead>
 
@@ -132,11 +132,10 @@
                     <tr>
                         <td class="text-center"><b>${qdto.comment_writer_name}</b></td>
                         <td class="text-left">${qdto.comment_content}</td>
-                        <td class="text-center">${qdto.comment_date}</td>
+                        <td class="text-center eng">${qdto.comment_date}</td>
                         <c:if test="${dto.bbs_status == 'send'}">
                        	<td class="text-center">
-                			<a href="<%=request.getContextPath()%>/mypageQnaDeleteOk.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                			<a href="<%=request.getContextPath()%>/mypageQnaModify.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}">수정</a>
+                			<a href="<%=request.getContextPath()%>/mypageQnaCommentDeleteOk.do?comment_no=${qdto.comment_no}&qna_no=${dto.bbs_no}" onclick="return confirm('정말 삭제하시겠습니까?');" class="delbtn">삭제</a>
             			</td>
                         </c:if>
                     </tr>
@@ -161,7 +160,7 @@
             <input type="hidden" name="comment_writer_id" value="${login_id}" />
             <input type="hidden" name="comment_writer_name" value="${login_name}" />
             <input type="hidden" name="comment_writer_pw" value="${login_pw}" />
-            <table class="table-form write-comment">
+            <table class="table-form comment-write">
              	<colgroup>
                     <col width="120" />
                     <col />
@@ -178,6 +177,19 @@
         </div>
     </div>
     <!-- 내용 //END -->
+
+
+
+
+    <!-- 버튼 //START -->
+    <div class="qv-btn">
+        <c:if test="${dto.bbs_status == 'send'}">
+        <a href="<%=request.getContextPath()%>/mypageQnaDeleteOk.do?qna_no=${dto.bbs_no}" class="delete" onClick="return confirm('정말 삭제하시겠습니까?');">삭제하기</a>
+        <a href="<%=request.getContextPath()%>/mypageQnaModify.do?qna_no=${dto.bbs_no}" class="modify">수정하기</a>
+        </c:if>
+        <a href="<%=request.getContextPath()%>/mypageQnaList.do">목록보기</a>
+    </div>
+    <!-- 버튼 //END -->
 </div>
 
 

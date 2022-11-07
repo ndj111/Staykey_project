@@ -170,6 +170,13 @@ public class QnaCommentDAO {
 
             result = pstmt.executeUpdate();
 
+
+            sql = "update staykey_qna set bbs_comment = bbs_comment + 1 where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, dto.getComment_qnano());
+            pstmt.executeUpdate();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -185,7 +192,7 @@ public class QnaCommentDAO {
     // 답변 삭제 + 글번호 재작업 메서드
     // ======================================================
 
-    public int deleteComment( int no) {
+    public int deleteComment(int qna_no, int comment_no) {
         int result = 0;
 
         try {
@@ -193,24 +200,32 @@ public class QnaCommentDAO {
 
             sql = "delete from staykey_qna_comment where comment_no = ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
+            pstmt.setInt(1, comment_no);
             result = pstmt.executeUpdate();
 
-            
             sql = "update staykey_qna_comment set comment_no = comment_no - 1 where comment_no > ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, no);
+            pstmt.setInt(1, comment_no);
+            pstmt.executeUpdate();
+
+            sql = "update staykey_qna set bbs_comment = bbs_comment - 1 where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, qna_no);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
+
         return result;
     }
 
     
+
+
     // ======================================================
     // 댓글 정보 가져오는 메서드
     // ======================================================

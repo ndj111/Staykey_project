@@ -21,6 +21,9 @@ public class SiteMypageQnaViewAction implements Action {
 
         QnaDAO dao = QnaDAO.getInstance();
 
+        // 조회수 늘리기
+        dao.plusQnaCount(no);
+
         // 문의글 내용
         QnaDTO dto = dao.getQnaInfo(no);
         request.setAttribute("qna", dto);

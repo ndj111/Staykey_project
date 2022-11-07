@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -42,7 +41,7 @@ public class SiteMypageQnaCommentOkAction implements Action {
         int result = dao.registerComment(dto);
 
         if(result > 0){
-            forward.setRedirect(false);
+            forward.setRedirect(true);
             forward.setPath("mypageQnaView.do?no="+comment_qnano);
 
         }else{

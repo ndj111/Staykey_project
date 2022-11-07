@@ -979,9 +979,11 @@
 }
 
 .qna-view .table-form td.file {}
+.qna-write .table-form td.file li,
 .qna-view .table-form td.file li {
     margin: 10px 0;
 }
+.qna-write .table-form td.file img,
 .qna-view .table-form td.file img {
     width: 100%;
     max-width: 100%;
@@ -994,13 +996,30 @@
     color: #888;
 }
 
-.qna-view .write-comment {
+
+.qna-view .comment-list {}
+.qna-view .comment-list td .delbtn {
+    display: inline-block;
+    padding: 7px 12px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+}
+.qna-view .comment-list td .delbtn:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+
+.qna-view .comment-write {
     border-top: 0;
 }
-.qna-view .write-comment td {
+.qna-view .comment-write td {
     padding: 10px 0;
 }
-.qna-view .write-comment td textarea {
+.qna-view .comment-write td textarea {
     border: 1px solid #e5e5e5;
     width: 100%;
     height: 80px;
@@ -1009,10 +1028,10 @@
     padding: 15px;
     resize: none;
 }
-.qna-view .write-comment td textarea:focus {
+.qna-view .comment-write td textarea:focus {
     border-color: var(--color);
 }
-.qna-view .write-comment td button {
+.qna-view .comment-write td button {
     display: block;
     width: 120px;
     height: 80px;
@@ -1024,10 +1043,42 @@
     background: #000;
     border: 1px solid #000;
 }
-.qna-view .write-comment td button:hover {
+.qna-view .comment-write td button:hover {
     opacity: 0.8;
 }
 
 
-
+.qna-view .qv-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
+.qna-view .qv-btn a {
+    display: inline-block;
+    width: 120px;
+    height: 48px;
+    padding-top: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+.qna-view .qv-btn a:hover {
+    opacity: 0.8;
+}
+.qna-view .qv-btn a.delete {
+    background: var(--color);
+    border-color: var(--color);
+}
+.qna-view .qv-btn a.modify {
+    color: #000;
+    background: #fff;
+}
+.qna-view .qv-btn a.modify:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
 

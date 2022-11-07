@@ -257,7 +257,6 @@ public class QnaDAO {
             pstmt.setInt(1, no);
             result = pstmt.executeUpdate();
 
-            
             sql = "update staykey_qna set bbs_no = bbs_no - 1 where bbs_no > ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, no);
@@ -421,12 +420,85 @@ public class QnaDAO {
         return result;
     }
 
+
+
+
+
+    // ======================================================
+    // 문의글 수정 메서드
+    // ======================================================
+    public int modifyQna(QnaDTO dto) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "update staykey_qna set bbs_title = ?, bbs_content = ?, bbs_file1 = ?, bbs_file2 = ? where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, dto.getBbs_title());
+            pstmt.setString(2, dto.getBbs_content());
+            pstmt.setString(3, dto.getBbs_file1());
+            pstmt.setString(4, dto.getBbs_file2());
+            pstmt.setInt(5, dto.getBbs_no());
+            result = pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+
+        return result;
+    }
     
-    
-    
-    
-    
-    
+
+
+
+
+    // ======================================================
+    // 문의글 조회수 늘리기 메서드
+    // ======================================================
+    public void plusQnaCount(int bbs_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_qna set bbs_hit = bbs_hit + 1 where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, bbs_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+    }
+
+
+
+
+
+    // ======================================================
+    // 문의글에 등록된 댓글 전부 삭제 메서드
+    // ======================================================
+    public void deleteQnaCommentAll(int bbs_no) {
+        try {
+            openConn();
+
+            sql = "delete from staykey_qna_comment where comment_qnano = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, bbs_no);
+            pstmt.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+    }
 
 
 }

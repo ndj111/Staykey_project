@@ -20,7 +20,7 @@ public class AdminQnaCommendDeleteOkAction implements Action {
 		QnaCommentDAO dao = QnaCommentDAO.getInstance();
 
 		
-		int res = dao.deleteComment(no);
+		int res = dao.deleteComment(qna_no, no);
 		
 		ActionForward forward = new ActionForward();
 		PrintWriter out = response.getWriter();

@@ -57,8 +57,8 @@ public class SiteMypageQnaWriteOkAction implements Action {
 
             // DB에 저장되는 파일 이름
             // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
-            String fileDBName = thisFolder + bbs_file1_rename;
-            dto.setBbs_file1(fileDBName);
+            String file1DBName = thisFolder + bbs_file1_rename;
+            dto.setBbs_file1(file1DBName);
         }
 
         File bbs_file2 = multi.getFile("bbs_file2");
@@ -69,8 +69,8 @@ public class SiteMypageQnaWriteOkAction implements Action {
 
         	// DB에 저장되는 파일 이름
         	// 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
-        	String fileDBName = thisFolder + bbs_file2_rename;
-        	dto.setBbs_file2(fileDBName);
+        	String file2DBName = thisFolder + bbs_file2_rename;
+        	dto.setBbs_file2(file2DBName);
         }
 
         dto.setBbs_writer_id(id);

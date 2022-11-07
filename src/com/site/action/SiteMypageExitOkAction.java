@@ -1,5 +1,6 @@
 package com.site.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.MemberDAO;
+import com.model.MemberDTO;
 
 
 public class SiteMypageExitOkAction implements Action {
@@ -19,6 +21,25 @@ public class SiteMypageExitOkAction implements Action {
         MemberDAO dao = MemberDAO.getInstance();
 
         String member_id = request.getParameter("member_id").trim();
+
+        MemberDTO dto = dao.getMemberInfo(member_id);        
+
+        // 프로필 사진 삭제
+        if(dto.getMember_photo() != null){
+            String thisFolder = "/data/profile/";
+            String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
+            File del_pimage = new File(saveFolder+dto.getMember_photo().replace(thisFolder, ""));
+            if(del_pimage.exists()){
+                if(del_pimage.delete()) {
+                    System.out.println("프로필 파일 삭제 완료");
+                }else {
+                    System.out.println("프로필 파일 삭제 실패");
+                }
+            }else{
+                System.out.println("파일 경로를 찾을 수 없습니다.");
+            }
+        }
+
 
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();

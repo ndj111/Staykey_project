@@ -22,7 +22,6 @@
     <!-- 내용 //START -->
     <div class="row vf-body">
         <div class="col-lg mb-4">
-        <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
@@ -35,17 +34,19 @@
                     <tr>
                         <th>상태</th>
                         <td> 
-		                    <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
+                            <c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
 		                	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
-		                	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
+                            <c:if test="${dto.bbs_status == 'done'}"><span class="text-danger">완료</span></c:if>
                         </td>
                         <td colspan="2">
+                            <form action="<%=request.getContextPath()%>/admin/qnaModifyOk.do?no=${dto.bbs_no}" method="post">
                         	<select name="bbs_status" class="form-select">
-                        		<option value="ing">처리중</option>
-                        		<option value="done">완료</option>
-                        		<option value="send">대기</option>
+                                <option value="send"<c:if test="${dto.bbs_status == 'send'}"> selected="selected"</c:if>>대기</option>
+                        		<option value="ing"<c:if test="${dto.bbs_status == 'ing'}"> selected="selected"</c:if>>처리중</option>
+                        		<option value="done"<c:if test="${dto.bbs_status == 'done'}"> selected="selected"</c:if>>완료</option>
                         	</select>
                     		<button type="submit" class="btn btn-sm btn-outline-success m-1">수정</button>
+                            </form>
                     	</td>
                     </tr>
                     <tr>
@@ -60,7 +61,6 @@
                     </tr>
                 </tbody>
             </table>
-            </form>
         </div>
     </div>
     <!-- 내용 //END -->

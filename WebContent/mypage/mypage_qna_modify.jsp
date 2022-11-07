@@ -1,51 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="dto" value="${qna}" />
+<c:if test="${empty dto}"><script type="text/javascript">alert('잘못된 접근입니다.'); history.back();</script></c:if>
+<c:if test="${qna.bbs_status != 'send'}"><script type="text/javascript">alert('현재 상태에서는 수정 할 수 없습니다.'); history.back();</script></c:if>
+
+
 <jsp:include page="../layout/layout_header.jsp" />
 <jsp:include page="../mypage/mypage_header.jsp" />
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<c:set var="dto" value="${comment}" />
-<c:set var="qna_no" value="${qna_no}" />
 
 <script type="text/javascript">$("#mymenu-qna").addClass("now");</script>
 
 
 
 <div class="qna-write">
-    <form name="write_form" method="post" action="<%=request.getContextPath() %>/mypageQnaModifyOk.do" onsubmit="return join_check();">
-	    <input type="hidden" name="qna_no" value="${qna_no}" />
-	    <input type="hidden" name="comment_no" value="${dto.comment_no}" />
-	    <table class="table-form mt-3">
-	        <colgroup>
-	            <col width="16%" />
-	            <col width="34%" />
-	            <col width="16%" />
-	            <col />
-	        </colgroup>
-	        
+    <form name="write_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/mypageQnaModifyOk.do">
+    <input type="hidden" name="bbs_no" value="${dto.bbs_no}" />
+    <input type="hidden" name="ori_file1" value="${dto.bbs_file1}" />
+    <input type="hidden" name="ori_file2" value="${dto.bbs_file2}" />
+    <table class="table-form">
+        <colgroup>
+            <col width="16%" />
+            <col />
+        </colgroup>
+
         <tr>
-            <th>요청 사항</th>
-            <td colspan="3"><textarea name="comment_content" cols="20" rows="4" class="form-control">${dto.comment_content}</textarea></td>
+            <th>제목</th>
+            <td>
+                <input type="text" name="bbs_title" value="${dto.bbs_title}" maxlength="200" class="w-100" required />
+            </td>
         </tr>
-	        
-    	</table>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea name="bbs_content" cols="80" rows="10" required>${dto.bbs_content}</textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="space" nowrap="nowrap"></td>
+        </tr>
+
+        <tr>
+            <th>첨부 파일 #1</th>
+            <td class="file">
+                <p><input type="file" name="bbs_file1" /></p>
+                <c:if test="${!empty dto.bbs_file1}"><p class="mt-3">
+                <c:choose>
+                <c:when test="${ext1 == 'jpg' || ext1 == 'jpeg' || ext1 == 'gif' || ext1 == 'png'}"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" alt="" /></c:when>
+                <c:otherwise><a href="<%=request.getContextPath()%>${dto.bbs_file1}" target="_blank"><i class="fa fa-floppy-o"></i> 다운로드 : ${dto.bbs_file1.replace("/data/qna/", "")}</a></c:otherwise>
+                </c:choose>
+                </p></c:if>
+            </td>
+        </tr>
+        <tr>
+            <th>첨부 파일 #2</th>
+            <td class="file">
+                <p><input type="file" name="bbs_file2" /></p>
+                <c:if test="${!empty dto.bbs_file2}"><p class="mt-3">
+                <c:choose>
+                <c:when test="${ext2 == 'jpg' || ext2 == 'jpeg' || ext2 == 'gif' || ext2 == 'png'}"><img src="<%=request.getContextPath()%>${dto.bbs_file2}" alt="" /></c:when>
+                <c:otherwise><a href="<%=request.getContextPath()%>${dto.bbs_file2}" target="_blank"><i class="fa fa-floppy-o"></i> 다운로드 : ${dto.bbs_file2.replace("/data/qna/", "")}</a></c:otherwise>
+                </c:choose>
+                </p></c:if>
+            </td>
+        </tr>
+    </table>
 
 
-
-	    <div class="gw-button">
-	        <div class="gwb-wrap">
-	            <div class="gwb-left"></div>
-	
-	            <div class="gwb-center">
-	                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i>뒤로가기</button>
-	                <button type="submit" class="btn btn-lg btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
-	            </div>
-	
-	            <div class="gwb-right"></div>
-	        </div>
-	    </div>
+    <div class="table-btn">
+        <button type="button" class="exit" onclick="history.back();">목록보기</button>
+        <button type="submit">수정하기</button>
+    </div>
     </form>
+
 </div>
 
 
