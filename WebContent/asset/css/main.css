@@ -154,9 +154,13 @@
     height: 80px;
     display: flex;
     font-size: 17px;
+    font-family: 'NotoSerifKR';
     letter-spacing: 2px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
     background-color: #800000;
  
 }
@@ -269,9 +273,11 @@
    color: #800000;
    font-weight: 500;
    font-family: 'NotoSerifKR';
-   letter-spacing: 3px;
-   margin: 30px;
+   letter-spacing: 4.5px;
+   margin: 30px 60px 30px 60px;
    word-break: keep-all;
+   word-wrap: break-word;
+   white-space: pre-line;
 }
 
 
@@ -336,6 +342,11 @@
     padding: 20px;
     display: block;
     object-fit: cover;
+}
+
+.main-new .stay-box .subtitle, .other {
+    font-family: 'NotoSerifKR';
+    letter-spacing: 1px;
 }
 
 
@@ -431,10 +442,11 @@
     float: left;
 }
 
-.main-promo .promo-container .small {
+.main-promo .promo-container .small, .text {
     -webkit-margin-collapse: t;
     font-size: 16px;
     color: #000;
+    font-family: 'NotoSerifKR';
 }
 
 .main-promo .promo-container .swiper-wrapper img {
@@ -489,7 +501,7 @@
     position: relative;
     height: 100%;
     background-color: #fefefe;
-    padding: 20px;
+    padding: 38px;
 }
 
 .main-event .event-container {
@@ -537,7 +549,9 @@
     object-fit: cover;
 }
 
-
+.main-event .other, .text {
+    font-family: 'NotoSerifKR';
+}
 .main-event .stay-info .more {
     margin-top: 20px;
     font-size: 12px;
