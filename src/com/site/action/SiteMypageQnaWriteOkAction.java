@@ -19,17 +19,16 @@ public class SiteMypageQnaWriteOkAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 문의글 등록 하는 비지니스 로직.
-        QnaDAO dao = QnaDAO.getInstance();
-        QnaDTO dto = new QnaDTO();
-        
+
 		HttpSession session = request.getSession();
-		
-		//세션 아이디 값 받아오기.
 		String id = (String)session.getAttribute("login_id");
 		String pw = (String)session.getAttribute("login_pw");
 		String name = (String)session.getAttribute("login_name");
-		
+
+        QnaDAO dao = QnaDAO.getInstance();
+        QnaDTO dto = new QnaDTO();
+
+
         // 파일 업로드 설정
         String thisFolder = "/data/qna/";
         String saveFolder = request.getSession().getServletContext().getRealPath(thisFolder);
@@ -47,13 +46,13 @@ public class SiteMypageQnaWriteOkAction implements Action {
         // 파라미터 정리
         String bbs_title = multi.getParameter("bbs_title").trim();
         String bbs_content = multi.getParameter("bbs_content").trim();
- 
-        
+
+
         // 첨부파일 이름 변경 처리
         File bbs_file1 = multi.getFile("bbs_file1");
         if(bbs_file1 != null) {
             String fileExt = bbs_file1.getName().substring(bbs_file1.getName().lastIndexOf(".") + 1);
-            String bbs_file1_rename = id + "_" + System.currentTimeMillis() + "." + fileExt;
+            String bbs_file1_rename = id + "_file1_" + System.currentTimeMillis() + "." + fileExt;
             bbs_file1.renameTo(new File(saveFolder + "/" + bbs_file1_rename));
 
             // DB에 저장되는 파일 이름
@@ -65,30 +64,32 @@ public class SiteMypageQnaWriteOkAction implements Action {
         File bbs_file2 = multi.getFile("bbs_file2");
         if(bbs_file2 != null) {
         	String fileExt = bbs_file2.getName().substring(bbs_file2.getName().lastIndexOf(".") + 1);
-        	String bbs_file2_rename = id + "_" + System.currentTimeMillis() + "." + fileExt;
+        	String bbs_file2_rename = id + "_file2_" + System.currentTimeMillis() + "." + fileExt;
         	bbs_file2.renameTo(new File(saveFolder + "/" + bbs_file2_rename));
-        	
+
         	// DB에 저장되는 파일 이름
         	// 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
         	String fileDBName = thisFolder + bbs_file2_rename;
         	dto.setBbs_file2(fileDBName);
         }
-        
+
         dto.setBbs_writer_id(id);
         dto.setBbs_writer_pw(pw);
         dto.setBbs_writer_name(name);
         dto.setBbs_title(bbs_title);
         dto.setBbs_content(bbs_content);
-        
-        int res = dao.registerQna(dto);
-        
+
+
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
 
+        int res = dao.registerQna(dto);
         if (res > 0) {
         	forward.setRedirect(true);
         	forward.setPath("mypageQnaList.do");
+
         }else {
+            forward = null;
             out.println("<script>alert('문의글 등록 중 에러가 발생하였습니다.'); history.back();</script>");
 
         }

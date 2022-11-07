@@ -19,18 +19,12 @@ public class AdminQnaCommentOkAction implements Action {
 		QnaCommentDTO dto = new QnaCommentDTO();
 		QnaCommentDAO dao= QnaCommentDAO.getInstance();
 		
-        int no = 0;
 
         ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
         
-        if(request.getParameter("no").length() > 0) {
-        	no = Integer.parseInt(request.getParameter("no").trim());
-        }else {
-        	no = dao.upCommentNo();
-        }
+        int no = Integer.parseInt(request.getParameter("no").trim());
 		String comment_content = request.getParameter("comment_content").trim();
-
 		
 		
 		if(comment_content.length() <= 0) {

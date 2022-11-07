@@ -15,8 +15,6 @@ import com.controller.Action;
 import com.controller.ActionForward;
 import com.model.EventDAO;
 import com.model.EventDTO;
-import com.model.MagazineDAO;
-import com.model.MagazineDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 

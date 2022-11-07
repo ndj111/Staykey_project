@@ -117,7 +117,6 @@ public class QnaDAO {
     // ======================================================
     // 문의 목록 메서드
     // ======================================================
-
     public List<QnaDTO> qnaList(int page, int rowsize, Map<String, Object> map) {
         List<QnaDTO> list = new ArrayList<QnaDTO>();
 
@@ -231,7 +230,7 @@ public class QnaDAO {
                 dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
-                
+
             }
 
         } catch (SQLException e) {
@@ -299,21 +298,59 @@ public class QnaDAO {
     }
    
     
+
+
+
+
+
+
+
+    // ======================================================
+    // 마이페이지 회원 문의글 데이터 갯수 메서드
+    // ======================================================
+    public int getQnaTotalCount(String member_id) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "select count(*) from staykey_qna where bbs_writer_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, member_id);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) result = rs.getInt(1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
+
     // ======================================================
     // 마이페이지 회원 문의글 목록 메서드
     // ======================================================
-    public List<QnaDTO> qnaMemberList(String id) {
+    public List<QnaDTO> getQnaList(int page, int rowsize, String member_id) {
         List<QnaDTO> list = new ArrayList<QnaDTO>();
-        
-        System.out.println(id);
+
+        int startNo = (page * rowsize) - (rowsize - 1);
+        int endNo = (page * rowsize);
+
         try {
-        	
             openConn();
 
-            sql = "select * from staykey_qna where bbs_writer_id = ?";
-            
+            sql = "select * from (select row_number() over(order by bbs_date desc) rnum, b.* from staykey_qna b where bbs_writer_id = ?) where rnum >= ? and rnum <= ? and bbs_writer_id = ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, member_id);
+            pstmt.setInt(2, startNo);
+            pstmt.setInt(3, endNo);
+            pstmt.setString(4, member_id);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -330,18 +367,22 @@ public class QnaDAO {
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
                 dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
-                
+
                 list.add(dto);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
         return list;
     }
     
+
+
+
 
     // ======================================================
     // 문의글 등록 메서드

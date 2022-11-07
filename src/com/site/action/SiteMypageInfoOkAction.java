@@ -45,6 +45,7 @@ public class SiteMypageInfoOkAction implements Action {
 		String modify_phone = multi.getParameter("modify_phone").trim();
 		String modify_pw = multi.getParameter("modify_pw").trim();
 		String now_pw = multi.getParameter("now_pw").trim();
+        String ori_photo = multi.getParameter("ori_photo").trim();
 
 
         // 현재 비밀번호 체크
@@ -81,6 +82,8 @@ public class SiteMypageInfoOkAction implements Action {
             // 저장이름 : /data/저장폴더/회원아이디_현재날짜(유닉스타임)
             String fileDBName = thisFolder + member_photo_flie_rename;
             dto.setMember_photo(fileDBName);
+        }else{
+            dto.setMember_photo(ori_photo);
         }
 
 

@@ -50,6 +50,7 @@
                         <td colspan="2" class="space" nowrap="nowrap"></td>
                     </tr>
 
+                    <c:if test="${dto.getMember_type() != 'exit'}">
                     <tr>
                         <th>이름</th>
                         <td>${dto.getMember_name()}</td>
@@ -76,6 +77,7 @@
                     <tr>
                         <td colspan="2" class="space" nowrap="nowrap"></td>
                     </tr>
+                    </c:if>
 
                     <tr>
                         <th>가입일자</th>

@@ -8,7 +8,7 @@
 <c:set var="dto" value="${qna}" />
 <c:set var="qList" value="${List}" />
 
-<script type="text/javascript">opener.parent.location.reload();</script>
+<!-- <script type="text/javascript">opener.parent.location.reload();</script> -->
 	
 <style type="text/css">body { padding: 0 30px !important; }</style>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
@@ -104,30 +104,45 @@
             <table class="table-form w-100">
                 <colgroup>
                     <col width="17%" />
-                    <col width="32%" />
-                    <col width="17%" />
                     <col />
                 </colgroup>
 
                 <tbody>
                     <tr>
                         <th>문의제목</th>
-                        <td colspan="3">${dto.bbs_title}</td>
+                        <td>${dto.bbs_title}</td>
                     </tr>
                     <tr> 
                         <th>문의내용</th>
-                        <td colspan="3" >${dto.bbs_content.replace(newLine, "<br />")}</td>
+                        <td >${dto.bbs_content.replace(newLine, "<br />")}</td>
                     </tr>
+
+                    <c:if test="${!empty dto.bbs_file1 || !empty dto.bbs_file2}">
                     <tr>
                         <th>첨부파일</th>
-                        <c:if test="${empty dto.bbs_file1 && empty dto.bbs_file2}"><td colspan="3" class="text-primary">파일 없음</td></c:if>
-                        <c:if test="${!empty dto.bbs_file1 || !empty dto.bbs_file2}">
-                        <td colspan="2">
-							<img src="<%=request.getContextPath()%>${dto.bbs_file1}" style="max-width: 250px;" alt="" />
-							<img src="<%=request.getContextPath()%>${dto.bbs_file2}" style="max-width: 250px;" alt="" />
+                        <td class="file">
+                            <ul>
+                                <c:if test="${!empty dto.bbs_file1}">
+                                <li class="my-3">
+                                    <c:choose>
+                                    <c:when test="${ext1 == 'jpg' || ext1 == 'jpeg' || ext1 == 'gif' || ext1 == 'png'}"><img src="<%=request.getContextPath()%>${dto.bbs_file1}" style="width: 100%; max-width: 100%;" alt="" /></c:when>
+                                    <c:otherwise><a href="<%=request.getContextPath()%>${dto.bbs_file1}" target="_blank"><i class="fa fa-floppy-o"></i> 다운로드 : ${dto.bbs_file1.replace("/data/qna/", "")}</a></c:otherwise>
+                                    </c:choose>
+                                </li>
+                                </c:if>
+
+                                <c:if test="${!empty dto.bbs_file2}">
+                                <li class="my-3">
+                                    <c:choose>
+                                    <c:when test="${ext2 == 'jpg' || ext2 == 'jpeg' || ext2 == 'gif' || ext2 == 'png'}"><img src="<%=request.getContextPath()%>${dto.bbs_file2}" style="width: 100%; max-width: 100%;" alt="" /></c:when>
+                                    <c:otherwise><a href="<%=request.getContextPath()%>${dto.bbs_file2}" target="_blank"><i class="fa fa-floppy-o"></i> ${dto.bbs_file2.replace("/data/qna/", "")}</a></c:otherwise>
+                                    </c:choose>
+                                </li>
+                                </c:if>
+                            </ul>
                         </td>
-                        </c:if>
                     </tr>
+                    </c:if>
                 </tbody>
             </table>
         </div>
@@ -189,8 +204,8 @@
         					
                          </tbody>
                     </table>
-                    
-                     <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${comment_qnano}">
+                     <c:if test="${dto.bbs_status == 'send'}">
+                     <form name="write_form" method="post" action="<%=request.getContextPath() %>/admin/qnaCommentOk.do?no=${dto.bbs_no}">
                    		<%-- 이름, 아이디, 비밀번호 임시로 받음. --%>
                    		<input type="hidden" name="comment_writer_name" value="${login_name}" />
 						<input type="hidden" name="comment_writer_id" value="${login_id}" />
@@ -211,7 +226,7 @@
 					    </tr> 
 			   		</table>
 			   		</form>	
-			   		
+			   		</c:if>
 			   		
                 </div>
             </div>

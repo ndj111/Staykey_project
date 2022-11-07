@@ -17,6 +17,7 @@
 
 
     <form name="modify_form" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/mypageInfoOk.do" onsubmit="return validateForm(this);">
+    <input type="hidden" name="ori_photo" value="${dto.member_photo}" />
     <fieldset class="im-wrap">
         <legend>회원 정보 수정</legend>
 
@@ -108,7 +109,7 @@
             </div>
             <div class="modal-footer">
             	<form method="post" action="<%=request.getContextPath()%>/mypageExitOk.do">
-            	<input type="hidden" member_id="${dto.member_id}" />
+            	<input type="hidden" name="member_id" value="${dto.member_id}" />
             	<button type="submit" class="exit">탈퇴하기</button>
             	<button type="button" data-dismiss="modal">취소하기</button>
             	</form>

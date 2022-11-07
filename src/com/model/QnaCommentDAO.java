@@ -273,33 +273,6 @@ public class QnaCommentDAO {
         return result;
     }
     
-    // ======================================================
-    // 답변 없을 때 문의글 번호 메서드
-    // ======================================================
-    public int upCommentNo() {
-        int result = 0;
-
-        try {
-            openConn();
-
-            sql = "select max(comment_qnano) from staykey_qna_comment";
-            pstmt = con.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-            	result = rs.getInt(1) + 1;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
-
-        return result;
-    }
-    
-    
+   
 
 }

@@ -752,6 +752,282 @@
 
 
 
+/* 일대일 문의 */
+.qna-list {}
+
+.qna-list .table-list {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #000;
+}
+.qna-list .table-list th,
+.qna-list .table-list td {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee !important;
+    text-align: center;
+}
+.qna-list .table-list th {}
+.qna-list .table-list td {
+    color: #181818;
+}
+.qna-list .table-list td.eng {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.qna-list .table-list td.text-left {
+    text-align: left !important;
+}
+.qna-list .table-list td.text-center {
+    text-align: center !important;
+}
+.qna-list .table-list td.text-right {
+    text-align: right !important;
+}
+.qna-list .table-list > tbody > tr:hover {
+    cursor: pointer;
+    background: #f7f7f7;
+}
+.qna-list .table-list tfoot td {
+    border-bottom: 0 none !important;
+}
+.qna-list .table-list table {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+.qna-list .table-list tfoot td .page-paging {
+    margin: 0;
+}
+.qna-list .table-list tfoot td .page-paging:before {
+    height: 0;
+}
+
+.qna-list .table-list tfoot td .write-btn {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    padding-top: 13px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #fff;
+    background: #000;
+    text-align: center;
+}
+.qna-list .table-list tfoot td .write-btn:hover {
+    opacity: 0.8;
+}
+
+
+
+
+.qna-write .table-form {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #000;
+}
+.qna-write .table-form th,
+.qna-write .table-form td {
+    margin: 0;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd !important;
+}
+.qna-write .table-form th {}
+.qna-write .table-form td {
+    color: #181818;
+}
+.qna-write .table-form td.space {
+    padding: 0 !important;
+    height: 15px;
+}
+.qna-write .table-form td input {
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 300px;
+    border-radius: 5px;
+}
+.qna-write .table-form td input[type='file'] {
+    padding-top: 8px !important;
+}
+.qna-write .table-form td input:focus {
+    border-color: var(--color);
+}
+.qna-write .table-form td textarea {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    resize: none;
+}
+.qna-write .table-form td textarea:focus {
+    border-color: var(--color);
+}
+
+
+.qna-write .table-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+.qna-write .table-btn button {
+    display: inline-block;
+    width: 150px;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+    margin: 0 5px;
+}
+.qna-write .table-btn button:hover {
+    opacity: 0.8;
+}
+.qna-write .table-btn button.exit {
+    color: #191919;
+    background: #fff;
+    border-color: #000;
+}
+.qna-write .table-btn button.exit:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+
+
+.qna-view h4 {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 40px;
+}
+.qna-view .table-form {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border-top: 2px solid #000;
+}
+.qna-view .table-form th,
+.qna-view .table-form td {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd !important;
+}
+.qna-view .table-form th {}
+.qna-view .table-form td {
+    color: #181818;
+}
+
+.qna-view .table-form .my-2 {
+    margin-top: .5rem !important;
+    margin-bottom: .5rem !important;
+}
+.qna-view .table-form .pl-2 {
+    padding-left: 0.5rem !important;
+}
+.qna-view .table-form .pl-3 {
+    padding-left: 1rem !important;
+}
+.qna-view .table-form .eng {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.qna-view .table-form td.space {
+    padding: 0 !important;
+    height: 15px;
+}
+
+.qna-view .table-form td.file {}
+.qna-view .table-form td.file li {
+    margin: 10px 0;
+}
+.qna-view .table-form td.file img {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.qna-view .table-form td.nodata {
+    padding: 50px 0;
+    text-align: center;
+    color: #888;
+}
+
+.qna-view .write-comment {
+    border-top: 0;
+}
+.qna-view .write-comment td {
+    padding: 10px 0;
+}
+.qna-view .write-comment td textarea {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    height: 80px;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    resize: none;
+}
+.qna-view .write-comment td textarea:focus {
+    border-color: var(--color);
+}
+.qna-view .write-comment td button {
+    display: block;
+    width: 120px;
+    height: 80px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+.qna-view .write-comment td button:hover {
+    opacity: 0.8;
+}
+
 
 
 

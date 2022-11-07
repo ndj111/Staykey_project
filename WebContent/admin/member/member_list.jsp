@@ -36,6 +36,9 @@
                     <label class="form-check-label"><input type="radio" name="ps_type" value="user" class="form-check-input"<c:if test="${map.ps_type == 'user'}"> checked="checked"</c:if> /> 일반회원</label>
                 </div>
                 <div class="form-check form-check-inline">
+                    <label class="form-check-label"><input type="radio" name="ps_type" value="exit" class="form-check-input"<c:if test="${map.ps_type == 'exit'}"> checked="checked"</c:if> /> 탈퇴회원</label>
+                </div>
+                <div class="form-check form-check-inline">
                     <label class="form-check-label"><input type="radio" name="ps_type" value="admin" class="form-check-input"<c:if test="${map.ps_type == 'admin'}"> checked="checked"</c:if> /> 관리자</label>
                 </div>
             </td>
@@ -115,7 +118,7 @@
             <c:set var="showLink" value="onclick=\"popWindow('../admin/memberView.do?id=${dto.getMember_id()}', '700', '900');\"" />
             <tr>
                 <td ${showLink}>${dto.getMember_no()}</td>
-                <td ${showLink}><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
+                <td ${showLink}><c:choose><c:when test="${dto.getMember_type() == 'admin'}">관리자</c:when><c:when test="${dto.getMember_type() == 'exit'}">탈퇴회원</c:when><c:otherwise>회원</c:otherwise></c:choose></td>
                 <td ${showLink} class="photo">
                     <c:choose>
                     <c:when test="${!empty dto.getMember_photo() }"><img src="<%=request.getContextPath()%>${dto.getMember_photo()}" alt="" /></c:when>
@@ -132,9 +135,24 @@
                     <p class="mb-1"><b>${dto.getMember_id()}</b></p>
                     <p>${dto.getMember_name()}</p>
                 </td>
-                <td ${showLink}>${dto.getMember_email()}</td>
-                <td ${showLink}>${dto.getMember_phone()}</td>
-                <td ${showLink}><fmt:formatNumber value="${dto.getMember_reserv()}" />번</td>
+                <td ${showLink}>
+                    <c:choose>
+                    <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
+                    <c:otherwise>${dto.getMember_email()}</c:otherwise>
+                    </c:choose>
+                </td>
+                <td ${showLink}>
+                    <c:choose>
+                    <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
+                    <c:otherwise>${dto.getMember_phone()}</c:otherwise>
+                    </c:choose>
+                </td>
+                <td ${showLink}>
+                    <c:choose>
+                    <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
+                    <c:otherwise><fmt:formatNumber value="${dto.getMember_reserv()}" />번</c:otherwise>
+                    </c:choose>
+                </td>
                 <td ${showLink}>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/memberModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
