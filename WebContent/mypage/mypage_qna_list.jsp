@@ -45,6 +45,7 @@
                     ${dto.bbs_title}
                     <c:if test="${!empty dto.bbs_file1}"><i class="fa fa-floppy-o"></i></c:if>
                     <c:if test="${!empty dto.bbs_file2}"><i class="fa fa-floppy-o"></i></c:if>
+                    <c:if test="${dto.bbs_comment > 0}"><span class="com">(${dto.bbs_comment})</span></c:if>
                 </td>
                 <td class="eng">${dto.bbs_hit}</td>
                 <td class="eng">${dto.bbs_date}</td>

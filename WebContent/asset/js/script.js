@@ -4,6 +4,7 @@
 (function($){
     $(window).on("load", function(){
         $("#ajax-loader").fadeOut("slow");
+        $("html").removeClass("noscroll");
     });
 })(jQuery);
 

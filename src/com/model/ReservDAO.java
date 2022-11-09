@@ -541,8 +541,11 @@ public class ReservDAO {
                 dto.setReserv_people_kid(rs.getInt("reserv_people_kid"));
                 dto.setReserv_people_baby(rs.getInt("reserv_people_baby"));
                 dto.setReserv_pickup(rs.getString("reserv_pickup"));
-                dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
                 dto.setReserv_date(rs.getString("reserv_date"));
+
+                if(rs.getString("reserv_request") != null){
+                    dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
+                }
 
 
                 // 현재 상태 설정

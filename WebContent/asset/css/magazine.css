@@ -157,6 +157,7 @@
     background-repeat: no-repeat;
     color: #fff;
     font-weight: 400;
+    text-shadow: 1px 0px 3px rgba(0, 0, 0, 0.9);
 }
 .magazine-view .mv-top p.title {
     font-size: 32px;

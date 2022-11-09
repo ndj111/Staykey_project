@@ -793,6 +793,12 @@
 .qna-list .table-list td.text-right {
     text-align: right !important;
 }
+.qna-list .table-list td span.com {
+    margin-left: 2px;
+    font-family: 'Lato';
+    letter-spacing: 0;
+    color: var(--color);
+}
 .qna-list .table-list > tbody > tr:hover {
     cursor: pointer;
     background: #f7f7f7;

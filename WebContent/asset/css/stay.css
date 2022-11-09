@@ -793,7 +793,7 @@
 }
 .stay-view .sv-room .svr-list li .room-info .name {
     position: absolute;
-    bottom: 75px;
+    bottom: 62px;
     left: 30px;
     font-size: 24px;
     font-weight: 500;
@@ -819,7 +819,7 @@
 .stay-view .sv-room .svr-list li .room-info .etc {
     position: absolute;
     bottom: 30px;
-    left: 30px;
+    left: 25px;
     width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;

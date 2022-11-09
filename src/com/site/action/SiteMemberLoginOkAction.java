@@ -49,7 +49,6 @@ public class SiteMemberLoginOkAction implements Action {
 			session.setAttribute("login_reserv", dao.reservCount(dto.getMember_id()));
 			session.setAttribute("login_wish", wdao.getTotalCount(dto.getMember_id()));
 
-			request.setAttribute("login_msg", "<script>alert('관리자 로그인 성공!');</script>");
 			forward.setRedirect(false);
 			forward.setPath("admin/");
 

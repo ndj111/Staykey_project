@@ -47,8 +47,6 @@
 
 
 
-
-
     <!-- 숙소 Room목록 //START -->
     <div class="sv-room">
         <div class="svr-info container">

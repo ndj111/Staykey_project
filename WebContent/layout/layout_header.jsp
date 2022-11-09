@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% long time = System.currentTimeMillis(); %>
 <!DOCTYPE html>
-<html>
+<html class="noscroll">
 <head>
     <meta charset="UTF-8">
     <title>스테이키 (StayKey)</title>

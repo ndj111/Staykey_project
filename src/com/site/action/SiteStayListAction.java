@@ -68,14 +68,26 @@ public class SiteStayListAction implements Action {
 			get_type = request.getParameterValues("ps_type");
 			if(get_type[0].equals("all")) {
 				ps_type = "all";
-			}else {
-				for(int i=0; i<get_type.length; i++) {
-					ps_type += "/" + get_type[i];
-				}
-				if(get_type.length > 1) {
-					page_write_type = get_type[0] + " 외 " + (get_type.length - 1) + "건";
-				}else{
-					page_write_type = get_type[0];
+			}else { // 2번째로 값 들어올 때, 분리 필요
+				if(get_type.length == 1) {
+					get_type = get_type[0].substring(1).split("/");
+					for(int i=0; i<get_type.length; i++) {
+						ps_type += "/" + get_type[i];
+					}
+					if(get_type.length > 1) {
+						page_write_type = get_type[0] + " 외 " + (get_type.length - 1) + "건";
+					}else{
+						page_write_type = get_type[0];
+					}
+				}else { // 기본
+					for(int i=0; i<get_type.length; i++) {
+						ps_type += "/" + get_type[i];
+					}
+					if(get_type.length > 1) {
+						page_write_type = get_type[0] + " 외 " + (get_type.length - 1) + "건";
+					}else{
+						page_write_type = get_type[0];
+					}
 				}
 			}
 		}else {
@@ -155,18 +167,17 @@ public class SiteStayListAction implements Action {
 
         request.setAttribute("stayList", list);
 
-
         // 숙소 유형 배열 넘겨주기
         showArray getArray = new showArray();
         getArray.getList("stayType");
         List<String> stayType = getArray.listArr;
         request.setAttribute("stayType", stayType);
+        request.setAttribute("wType", page_write_type);
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("stay/stay_list.jsp");
 
-        request.setAttribute("wType", page_write_type);
         
         return forward;
     }

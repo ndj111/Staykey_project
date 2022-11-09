@@ -152,7 +152,12 @@
                     			<div class="siw-right">
 						            <div class="tit">ROOM INFORMATION</div>
 						            <div class="name">${room.room_name}</div>
-						            <div class="txt">${room.room_desc}</div>
+						            <div class="txt">
+                                        <c:choose>
+                                        <c:when test="${room.room_desc.length() >= 150}">${room.room_desc.substring(0,150)} ...</c:when>
+                                        <c:otherwise>${room.room_desc}</c:otherwise>
+                                        </c:choose>
+                                    </div>
 						            <div class="etc">
 					                    <p>체크인 ${room.room_checkin} / 체크아웃 ${room.room_checkout}</p>
 					                    <p>기준 인원 <fmt:formatNumber value="${room.room_people_min}" />명 (최대 인원 <fmt:formatNumber value="${room.room_people_max}" />명)</p>
@@ -244,7 +249,7 @@
     <!-- 버튼 //START -->
     <div class="rv-btn">
     	<c:if test="${cancel_ok == 'Y'}"><button type="button" class="cancel" data-toggle="modal" data-target="#reserv-cancel">예약취소</button></c:if>
-    	<button type="button" onclick="history.back();">목록보기</button>
+    	<button type="button" onclick="location.href='<%=request.getContextPath()%>/mypageReservList.do'">목록보기</button>
     </div>
     <!-- 버튼 //END -->
 </div>
