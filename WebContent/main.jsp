@@ -20,6 +20,8 @@
 
 <div id="main-contents" class="main-contents">
 
+${ join_msg }
+<c:remove var="join_msg"/>
 
     <c:if test="${!empty rStay }">
     <!-------- 메인 비주얼//START --------->

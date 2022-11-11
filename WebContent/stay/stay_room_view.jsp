@@ -150,11 +150,11 @@
     <div class="sr-other">
         <div class="sro-title">OTHER ROOMS</div>
         <div class="sro-list">
-            <c:if test="${list.size() > 3}">
+            <c:if test="${list.size() > 4}">
             <button type="button" class="swiper-button-prev"><i class="fa fa-angle-left"></i></button>
             <button type="button" class="swiper-button-next"><i class="fa fa-angle-right"></i></button>
             </c:if>
-            <ul class="swiper-wrapper<c:if test="${list.size() <= 3}"> nomove</c:if>">
+            <ul class="swiper-wrapper<c:if test="${list.size() < 5}"> nomove</c:if>">
                 <c:forEach items="${list}" var="list">
                 <c:if test="${room.room_no != list.room_no}">
                 <li class="swiper-slide">
@@ -178,7 +178,7 @@
             </ul>
         </div>
     </div>
-    <c:if test="${list.size() > 3}">
+    <c:if test="${list.size() > 4}">
     <script type="text/javascript">
     var stayviewRoomSwiper = new Swiper(".stay-room .sr-other .sro-list", {
         effect: "slide",

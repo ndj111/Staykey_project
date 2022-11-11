@@ -52,6 +52,7 @@ delWish = function(stay_name, stay_no, member_id) {
 /////////////////////////////////////////////////////
 $(function() {
 
+
     // 비밀번호 확인
     $("#modify_pw").on("keyup", function() {
         let ModifyPwd = $(this).val().trim();
@@ -98,6 +99,7 @@ $(function() {
             }
         }
     });
+
 
     // 비밀번호 일치 여부 확인
     $("input[name='modify_pw_re']").on("keyup", function() {
@@ -175,6 +177,7 @@ $(function() {
         
         $(this).val(phone_number);
     });
+        
 });
 
 
@@ -183,25 +186,29 @@ $(function() {
 // 회원가입 유효성 검사
 /////////////////////////////////////////////////////
 function validateForm(form) {
+       
+    // ========== 비밀번호 유효성 검사 ===========
+    let pwd_pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,20}$/;
+    if(!pwd_pattern.test(form.modify_pw.value)){
+        alert("비밀번호 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
+        form.modify_pw.focus();
+        form.modify_pw.value = "";
+        form.modify_pw_re.value = "";
+        $(".checked").children('li').removeClass("on"); 
+        $("input[name='modify_pw_re']").parent().find("p.error").hide();      
+        return false;
+    }
 
-    let error = false;
-
-    if(form.modify_pw.length > 0){
-        // ========== 비밀번호 유효성 검사 ===========
-        let pwd_pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,20}$/;
-        if(!pwd_pattern.test(form.modify_pw.value)){
-            alert("비밀번호 작성 조건에 부합하지 않습니다. 다시 확인해주세요.");
+    // ========== 비밀번호 체크 유효성 검사 ===========
+    if(form.modify_pw.value.length > 0 && form.modify_pw_re.value.length > 0){
+        if(form.modify_pw.value != form.modify_pw_re.value){
+            alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
             form.modify_pw.focus();
+            form.modify_pw.value = "";
+            form.modify_pw_re.value = "";
+            $(".checked").children('li').removeClass("on");             
+            $("input[name='modify_pw_re']").parent().find("p.error").hide();        
             return false;
-        }
-
-        // ========== 비밀번호 체크 유효성 검사 ===========
-        if(form.modify_pw.value.length > 0 && form.modify_pw_re.value.length > 0){
-            if(form.modify_pw.value != form.modify_pw_re.value){
-                alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
-                form.modify_pw.focus();
-                return false;
-            }
         }
     }
 
@@ -232,10 +239,19 @@ function validateForm(form) {
 
 
 
+/////////////////////////////////////////////////////
+// 예약목록 리뷰 작성 폼 적용
+/////////////////////////////////////////////////////
+function setReviewWrite(stay_no, stay_name, room_no, room_name) {
 
+    console.log("여기는1");
 
-
-
+    $("#review-write .modal-header .modal-title span").text(stay_name);
+    $("#review-write input[name='review_stayno']").val(stay_no);
+    $("#review-write input[name='review_stayname']").val(stay_name);
+    $("#review-write input[name='review_roomno']").val(room_no);
+    $("#review-write input[name='review_roomname']").val(room_name);
+}
 
 
 

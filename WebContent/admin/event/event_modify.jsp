@@ -136,7 +136,7 @@
 			<tr>
 				<th>글 내용</th>
 				<td colspan="3"><textarea name="ev_content"
-						class="form-control" cols="80" rows="10">${dto.bbs_content}</textarea></td>
+						class="form-control" cols="80" rows="10" required>${dto.bbs_content} </textarea></td>
 			</tr>
 
 			<tr>
@@ -187,11 +187,11 @@
 			<div class="gwb-wrap">
 				<div class="gwb-left"></div>
 
-				<div class="gwb-center">
-					<button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
-					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 수정하기</button>
-				</div>
-
+            <div class="gwb-center">
+                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 취소하기</button>
+                <button type="submit" class="btn btn-lg btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
+            </div>
+            
 				<div class="gwb-right"></div>
 			</div>
 		</div>

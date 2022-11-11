@@ -190,12 +190,12 @@ public class QnaDAO {
                 
                 list.add(dto);
             }
+            closeConn(rs, pstmt, con);
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            closeConn(rs, pstmt, con);
-        }
+        }finally {
+		}
         return list;
     }
 
@@ -230,14 +230,12 @@ public class QnaDAO {
                 dto.setBbs_writer_id(rs.getString("bbs_writer_id"));
                 dto.setBbs_writer_pw(rs.getString("bbs_writer_pw"));
                 dto.setBbs_date(rs.getString("bbs_date"));
-
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
             closeConn(rs, pstmt, con);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
         }
 
         return dto;
@@ -264,6 +262,7 @@ public class QnaDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
@@ -386,8 +385,9 @@ public class QnaDAO {
     // ======================================================
     // 문의글 등록 메서드
     // ======================================================
-    public int registerQna(QnaDTO dto) {
-        int result = 0, count = 0;
+    public String registerQna(QnaDTO dto) {
+        String result = null;
+        int count = 0;
 
         try {
             openConn();
@@ -411,12 +411,16 @@ public class QnaDAO {
             pstmt.setString(7, dto.getBbs_writer_id());
             pstmt.setString(8, dto.getBbs_writer_pw());
 
-            result = pstmt.executeUpdate();
+            int res = pstmt.executeUpdate();
+            result = res + "/" + count;
+
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             closeConn(rs, pstmt, con);
         }
+
         return result;
     }
 

@@ -28,14 +28,17 @@ $(function(){
                 let ajaxTxt = "";
                 if(data.trim() > 0){
                     ajaxTxt = "<span class=\"text-danger\">* 이미 사용중인 아이디입니다.</span>";
+                    $("input[name='idchk']").val("N");
                 }else{
                     ajaxTxt = "<span class=\"text-primary\">* 사용 할 수 있는 아이디입니다.</span>";
+                    $("input[name='idchk']").val("Y");
                 }
                 $("#idchk-txt").html(ajaxTxt);
             },
 
             error : function(e){
                 alert("Error : " + e.status);
+                $("input[name='idchk']").val("N");
             }
         });
 	});
@@ -44,6 +47,12 @@ $(function(){
 
 join_check = function(){
     var form = document.write_form;
+
+    if(form.idchk.value == "N"){
+        alert("이미 사용중인 [아이디]입니다.\n다른 아이디를 입력해주세요.");
+        form.member_id.focus();
+        return false;
+    }
 
     if(form.member_pw.value.length > 0 && form.member_pw_re.value.length > 0){
         if(form.member_pw.value != form.member_pw_re.value){
@@ -112,6 +121,7 @@ join_check = function(){
             <td colspan="3">
                 <input type="text" name="member_id" value="" maxlength="30" class="form-control d-inline w-30" required />
                 <div id="idchk-txt" class="d-inline ml-2"></div>
+                <input type="hidden" name="idchk" value="N" />
             </td>
         </tr>
         <tr>

@@ -13,6 +13,7 @@
 <c:set var="stay" value="${sList}"/>
 
 
+
 <div class="container page-title">
     <h2>PROMOTION</h2>
     <h4>스테이:키가 제안하는 여행 레시피</h4>

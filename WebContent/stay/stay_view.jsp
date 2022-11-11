@@ -6,8 +6,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<% pageContext.setAttribute("newLine", "\n"); %>
 <c:set var="view" value="${stayView}" />
 <c:set var="list" value="${roomList}" />
+<c:set var="rlist" value="${reviewlist}" />
+
 
 <jsp:include page="../layout/layout_header.jsp" />
 <script type="text/javascript">$("#nav-stay").addClass("now");</script>
@@ -44,6 +47,7 @@
         </div>
     </div>
     <!-- 숙소 상단정보 //START -->
+
 
 
 
@@ -162,7 +166,84 @@
 
     </div>
     </c:if>
-    <!-- 숙소 상세정보 //START -->
+    <!-- 숙소 상세정보 //END -->
+    <div id="viewReivew">&nbsp;</div>
+
+
+
+
+
+    <c:if test="${!empty rlist}">
+    <!-- 숙소 전체 리뷰 //START -->
+    <div class="container sv-review">
+        <div class="svr-graph">
+            <div class="stay">${view.stay_name}</div>
+            <div class="graph">
+                <div class="graph-canvas">
+                    <canvas id="reviewGraph" width="170" height="195"></canvas>
+                </div>
+                <div class="graph-rate">
+                    <p>평점</p>
+                    <p><strong><fmt:formatNumber value="${reviewPoint}" pattern=".0" /></strong></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="svr-list">
+            <div class="title">REVIEW (<fmt:formatNumber value="${reviewTotal}" />)</div>
+            <table>
+                <colgroup>
+                    <col width="100" />
+                    <col width="108" />
+                    <col />
+                    <col width="120" />
+                    <col width="60" />
+                </colgroup>
+
+                <tbody>
+                    <c:forEach var="review" items="${rlist}">
+                    <tr class="rlist" num="${review.review_no}">
+                        <td class="point"><fmt:formatNumber value="${review.review_point_total}" pattern=".0" /></td>
+                        <td class="photo"><c:if test="${!empty review.review_file}"><img src="<%=request.getContextPath()%>${review.review_file}" alt="" /></c:if></td>
+                        <td>
+                            <p><span><i class="fa fa-home"></i> ${review.review_roomname}</span></p>
+                            <p><c:choose>
+                            <c:when test="${review.review_content.length() > 20}">${review.review_content.substring(0,20)} ...</c:when>
+                            <c:otherwise>${review.review_content}</c:otherwise>
+                            </c:choose></p>
+                        </td>
+                        <td>
+                            <p class="eng">${review.review_date.substring(0,10)}</p>
+                            <p>${review.review_name.substring(0,2)}*** 님</p>
+                        </td>
+                        <td class="arrow"><i class="fa fa-chevron-down"></i></td>
+                    </tr>
+
+                    <tr class="rcont" id="show_${review.review_no}">
+                        <td colspan="2" nowrap="nowrap"></td>
+                        <td colspan="3">
+                            <dl>
+                                <dt>접근성</dt><dd><b>${review.review_point1}</b>점</dd>
+                                <dt>서비스</dt><dd><b>${review.review_point2}</b>점</dd>
+                                <dt>객실시</dt><dd><b>${review.review_point3}</b>점</dd>
+                                <dt>부대시설</dt><dd><b>${review.review_point4}</b>점</dd>
+                                <dt>식음료</dt><dd><b>${review.review_point5}</b>점</dd>
+                                <dt>만족도</dt><dd><b>${review.review_point6}</b>점</dd>
+                            </dl>
+                            <c:if test="${!empty review.review_file}"><p><img src="<%=request.getContextPath()%>${review.review_file}" alt="" /></p></c:if>
+                            <p>${review.review_content.replace(newLine, "<br />")}</p>
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">drawReview("reviewGraph", ${rPoint1}, ${rPoint2}, ${rPoint3}, ${rPoint4}, ${rPoint5}, ${rPoint6});</script>
+    <!-- 숙소 전체 리뷰 //END -->
+    </c:if>
+
 
 
 

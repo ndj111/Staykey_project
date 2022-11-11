@@ -38,7 +38,11 @@
 					<c:if test="${list.reserv_people_baby > 0}"><span>영아 ${list.reserv_people_baby}명</span></c:if>
 				</p>
 				<p class="price"><fmt:setLocale value="ko_kr" /><fmt:formatNumber value="${list.reserv_total_price}" type="currency" /></p>
-				<p class="link"><a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${list.reserv_sess}"><i class="fa fa-search"></i> 예약상세내역</a></p>
+				<p class="link">
+					<a href="<%=request.getContextPath()%>/mypageReservView.do?reserv_sess=${list.reserv_sess}"><i class="fa fa-search"></i> 예약상세내역</a>
+					<c:if test="${getType == 'done' && list.reserv_review == 'N' && list.reserv_review_roomno == 0}"><button type="button" class="rbtn" data-toggle="modal" data-target="#review-write" onclick="setReviewWrite(${list.reserv_stayno}, '${list.reserv_stayname}', ${list.reserv_roomno}, '${list.reserv_roomname}');"><i class="fa fa-pencil"></i> 리뷰작성하기</button></c:if>
+					<c:if test="${list.reserv_review_roomno > 0}"><a href="<%=request.getContextPath()%>/stayView.do?stay_no=${list.reserv_stayno}#viewReivew" class="rbtn"><i class="fa fa-folder-open-o"></i> 내가 쓴 후기</a></c:if>
+				</p>
 			</div>
 		</li>
 		</c:forEach>
@@ -56,6 +60,100 @@
 
 </div>
 
+
+
+
+<!-- 리뷰 작성 Modal // START -->
+<div class="modal" id="review-write" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span></span> 후기 작성하기</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center pt-4 pb-5">
+            	<form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/mypageReservReviewOk.do">
+        		<input type="hidden" name="review_stayno" value="" />
+        		<input type="hidden" name="review_stayname" value="" />
+        		<input type="hidden" name="review_roomno" value="" />
+        		<input type="hidden" name="review_roomname" value="" />
+        		<input type="hidden" name="review_id" value="${login_id}" />
+        		<input type="hidden" name="review_pw" value="${login_pw}" />
+        		<input type="hidden" name="review_name" value="${login_name}" />
+			    <table class="table-form">
+			        <colgroup>
+			            <col width="16%" />
+			            <col />
+			        </colgroup>
+
+			        <tbody>
+			        	<tr>
+			        		<th>접근성</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point1" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<th>서비스</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point2" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<th>객실시설</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point3" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<th>부대시설</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point4" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<th>식음료</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point5" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<th>만족도</th>
+			        		<td>
+			        			<c:forEach begin="1" end="10" var="i"><label><input type="radio" name="review_point6" value="${i}"<c:if test="${i == 10}"> checked="checked"</c:if> /> ${i}점</label></c:forEach>
+			        		</td>
+			        	</tr>
+				        <tr>
+				            <td colspan="2" class="space" nowrap="nowrap"></td>
+				        </tr>
+
+			        	<tr>
+			        		<th>리뷰 내용</th>
+			        		<td><textarea name="review_content" cols="20" rows="4" required></textarea></td>
+			        	</tr>
+			        	<tr>
+			        		<th>리뷰 사진</th>
+			        		<td><input type="file" name="review_file" accept="image/jpeg, image/png, image/gif" /></td>
+			        	</tr>
+			        </tbody>
+
+			        <tfoot>
+			        	<tr>
+			        		<td colspan="2">
+				            	<button type="button" data-dismiss="modal">닫기</button>
+				            	<button type="submit" class="write">작성하기</button>
+			        		</td>
+			        	</tr>
+			        </tfoot>
+				</table>
+            	</form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 리뷰 작성 Modal // END -->
 
 
 <jsp:include page="../mypage/mypage_footer.jsp" />

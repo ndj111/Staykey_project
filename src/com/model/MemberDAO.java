@@ -87,6 +87,8 @@ public class MemberDAO {
             search_sql += " and member_type = 'user'";
         } else if (map.get("ps_type").equals("admin")) {
             search_sql += " and member_type = 'admin'";
+        } else if (map.get("ps_type").equals("exit")) {
+            search_sql += " and member_type = 'exit'";
         }
         if (map.get("ps_name") != null) {
             search_sql += " and member_name like '%" + map.get("ps_name") + "%'";
@@ -135,6 +137,8 @@ public class MemberDAO {
             search_sql2 += " and member_type = 'user'";
         } else if (map.get("ps_type") != "" && map.get("ps_type").equals("admin")) {
             search_sql2 += " and member_type = 'admin'";
+        } else if (map.get("ps_type") != "" && map.get("ps_type").equals("exit")) {
+            search_sql2 += " and member_type = 'exit'";
         }
         if (map.get("ps_name") != "" && map.get("ps_name") != null) {
             search_sql2 += " and member_name like '%" + map.get("ps_name") + "%'";

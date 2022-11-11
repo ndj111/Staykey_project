@@ -328,6 +328,66 @@ header.fixed-top .top-info a.nav-link {
 
 
 
+
+
+/*************************/
+/* #toast-wrap
+/*************************/
+#toast-wrap {
+    position: fixed;
+    top: 122px;
+    right: 15px;
+    z-index: 99999999;
+}
+#toast-wrap .toast {
+    flex-basis: 250px;
+    width: 250px;
+    max-width: 250px;
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border-radius: 7px;
+}
+#toast-wrap .toast .toast-header {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: .35rem .75rem;
+    background: #212529;
+    border-top-left-radius: calc(7px - 1px);
+    border-top-right-radius: calc(7px - 1px);
+}
+#toast-wrap .toast .toast-header i {
+    font-size: 1.25rem;
+    margin: 0 7px -4px 0;
+}
+#toast-wrap .toast .toast-header small {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+#toast-wrap .toast .toast-header button.close {
+    color: #fff;
+    text-shadow: none;
+}
+#toast-wrap .toast .toast-body {
+    padding: 0;
+}
+#toast-wrap .toast .toast-body a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: .75rem;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+#toast-wrap .toast .toast-body a > div {
+    margin-top: 7px;
+}
+
+
+
+
+
 /*************************/
 /* Container
 /*************************/

@@ -35,7 +35,7 @@ public class SiteMemberFindIdPwResultAction implements Action {
 
     		}else if(member_id.equals("noEmail")) { // 이메일 없을 때
 	        	forward = null;
-	        	out.println("<script>alert('존재하지 않은 이메일입니다.'); location.href='memberFindIdPw.do';</script>");
+	        	out.println("<script>alert('존재하지 않는 이메일입니다.'); location.href='memberFindIdPw.do';</script>");
 
     		}else { // 이름 없을 때
                 forward = null;

@@ -102,7 +102,7 @@
                 <th>No.</th>
                 <th>유형</th>
                 <th>사진</th>
-                <th>아이디/이름</th>
+                <th>이름<br>아이디</th>
                 <th>이메일</th>
                 <th>전화번호</th>
                 <th>예약횟수</th>
@@ -132,28 +132,28 @@
                     </c:choose>
                 </td>
                 <td ${showLink} class="py-4">
-                    <p class="mb-1"><b>${dto.getMember_id()}</b></p>
-                    <p>${dto.getMember_name()}</p>
+                    <p class="mb-1"><b>${dto.getMember_name()}</b></p>
+                    <p class="eng">${dto.getMember_id()}</p>
                 </td>
-                <td ${showLink}>
+                <td class="eng" ${showLink}>
                     <c:choose>
                     <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
                     <c:otherwise>${dto.getMember_email()}</c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink}>
+                <td class="eng" ${showLink}>
                     <c:choose>
                     <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
                     <c:otherwise>${dto.getMember_phone()}</c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink}>
+                <td class="eng" ${showLink}>
                     <c:choose>
                     <c:when test="${dto.getMember_type() == 'exit'}">-</c:when>
                     <c:otherwise><fmt:formatNumber value="${dto.getMember_reserv()}" />번</c:otherwise>
                     </c:choose>
                 </td>
-                <td ${showLink}>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
+                <td class="eng" ${showLink}>${dto.getMember_joindate().substring(0, 10)}<br />${dto.getMember_joindate().substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/memberModify.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-primary m-1">수정</a>
                     <a href="<%=request.getContextPath()%>/admin/memberDeleteOk.do?id=${dto.getMember_id()}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>

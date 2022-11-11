@@ -139,10 +139,6 @@
     display: flex;
 }
 
-.reserv-list .rl-list li .rll-info .link button:hover {
-    color: var(--color);
-    border-color: var(--color);
-}
 .reserv-list .rl-list li .rll-photo {
     display: block;
     width: 50%;
@@ -213,6 +209,22 @@
 .reserv-list .rl-list li .rll-info .link a:hover {
     opacity: 0.8;
 }
+.reserv-list .rl-list li .rll-info .link .rbtn {
+    width: 150px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    color: #000;
+    border: 1px solid #000;
+    background: #fff;
+    margin-left: 5px;
+}
+.reserv-list .rl-list li .rll-info .link .rbtn:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
 
 .reserv-list .rl-list li.nodata {
     display: block;
@@ -242,6 +254,96 @@
     border: 1px solid #000;
 }
 .reserv-list .rl-list li.nodata a:hover {
+    opacity: 0.8;
+}
+
+
+
+
+/* 리뷰 작성 */
+#review-write {}
+#review-write .table-form {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+#review-write .table-form tbody th,
+#review-write .table-form tbody td {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 0;
+    line-height: 16px;
+    vertical-align: middle;
+    text-align: left;
+}
+#review-write .table-form tbody th {
+    font-size: 13px;
+    font-weight: 400;
+}
+#review-write .table-form tbody td {
+    font-size: 14px;
+}
+#review-write .table-form tbody td.space {
+    padding: 0 !important;
+    height: 15px;
+}
+#review-write .table-form tbody td label {
+    padding: 5px 10px 5px 0;
+    margin-right: 10px;
+}
+#review-write .table-form tbody td label:hover {
+    color: var(--color);
+}
+#review-write .table-form tbody td input[type='file'] {
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 400px;
+    margin: 0;
+    border-radius: 5px;
+}
+#review-write .table-form tbody td textarea {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    resize: none;
+}
+#review-write .table-form tbody td textarea:focus {
+    border-color: var(--color);
+}
+#review-write .table-form tbody tr:last-child th,
+#review-write .table-form tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+#review-write .table-form tfoot td {
+    padding-top: 25px;
+}
+#review-write .table-form tfoot td button {
+    display: inline-block;
+    width: 120px;
+    height: 48px;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    border: 1px solid #000;
+}
+#review-write .table-form tfoot td button:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+#review-write .table-form tfoot td button.write {
+    margin-left: 10px;
+    color: #fff;
+    background: #000;
+    border-color: #000;
+}
+#review-write .table-form tfoot td button.write:hover {
     opacity: 0.8;
 }
 

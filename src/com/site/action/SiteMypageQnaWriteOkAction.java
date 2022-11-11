@@ -80,21 +80,29 @@ public class SiteMypageQnaWriteOkAction implements Action {
         dto.setBbs_content(bbs_content);
 
 
-        ActionForward forward = new ActionForward();
         PrintWriter out = response.getWriter();
 
-        int res = dao.registerQna(dto);
-        if (res > 0) {
-        	forward.setRedirect(true);
-        	forward.setPath("mypageQnaList.do");
+        String[] result = dao.registerQna(dto).split("/");
+        int res = 0;
+        int num = 0;
 
-        }else {
-            forward = null;
+        if(result != null) {
+            res = Integer.parseInt(result[0]);
+            num = Integer.parseInt(result[1]);
+        }
+
+        if (result != null && res > 0) {
+            out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
+                    + "webSocket.onopen = function(event) { webSocket.send(\"qna|"+name+"|"+id+"|"+bbs_title+"|"+num+"\"); "
+                    + "webSocket.close(); };</script>");
+            out.println("<script>setTimeout(function(){ location.href='mypageQnaList.do'; }, 500);</script>");
+
+        }else{
             out.println("<script>alert('문의글 등록 중 에러가 발생하였습니다.'); history.back();</script>");
 
         }
 
-        return forward;
+        return null;
 	}
 
 }

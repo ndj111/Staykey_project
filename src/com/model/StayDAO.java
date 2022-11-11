@@ -350,7 +350,7 @@ public class StayDAO {
         search_sql1 += search_sql2;
         
 		////////////////////////////////////////////////////////////////
-		// reserv_start, reserv_end 값 필요 from staykey_reserv
+		// 예민한 쿼리니 필요 시 상의 후 수정 바랍니다.
 		/////////////////////////////////////////////////////////////////
 		// ps_start : 체크인날짜 & ps_end : 체크아웃날짜
 		if((map.get("ps_start") != "" && map.get("ps_start") != null) && (map.get("ps_end") != "" && map.get("ps_end") != null)) {

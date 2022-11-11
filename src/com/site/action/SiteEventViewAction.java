@@ -30,6 +30,9 @@ public class SiteEventViewAction implements Action {
         List<StayDTO> slist = sdao.getBbsViewList(dto.getBbs_stayno());
         request.setAttribute("stayList", slist);
 
+        // 조회수 늘리기
+        dao.plusEventCount(bbs_no);
+
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("event/event_view.jsp");

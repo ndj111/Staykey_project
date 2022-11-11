@@ -476,7 +476,7 @@ public class EventDAO {
         try {
             openConn();
 
-            sql = "select * from staykey_event order by bbs_date desc";
+            sql = "select * from staykey_event where (bbs_file1 is not null or bbs_file2 is not null) order by bbs_date desc";
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -541,10 +541,31 @@ public class EventDAO {
 
 
 
+    // ======================================================
+    // 이벤트 조회수 늘리기
+    // ======================================================
+    public void plusEventCount(int bbs_no) {
+        try {
+            openConn();
+
+            sql = "update staykey_event set bbs_hit = bbs_hit + 1 where bbs_no = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, bbs_no);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(pstmt, con);
+        }
+    }
+
+
 
 
     // ======================================================
-    // 이벤트 숙소 목록(사이트 게시판 화면) 메서드 @노동진
+    // 이벤트 숙소 목록(사이트 게시판 화면) 메서드
     // ======================================================
     public List<HashMap<String, String>> getEventStayList() {
         List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
@@ -557,57 +578,59 @@ public class EventDAO {
             rs = pstmt.executeQuery();
 
             while(rs.next()) {
-                String get_stayno = rs.getString("bbs_stayno").substring(1, rs.getString("bbs_stayno").length() - 1);
-                String[] epd_stayno = get_stayno.split("/");
+                if(rs.getString("bbs_stayno") != null){
+                    String get_stayno = rs.getString("bbs_stayno").substring(1, rs.getString("bbs_stayno").length() - 1);
+                    String[] epd_stayno = get_stayno.split("/");
 
-                // 쪼갠 숙소 번호로 반복
-                for(int i=0; i<epd_stayno.length; i++){
-                    sql2 = "select * from staykey_stay where stay_no = ?";
-                    pstmt2 = con.prepareStatement(sql2);
-                    pstmt2.setInt(1, Integer.parseInt(epd_stayno[i]));
-                    rs2 = pstmt2.executeQuery();
-
-                    // 숙소 정보가 있으면 HashMap에 데이터 저장하고, 그 HashMap을 ArrayList에 넣기
-                    if(rs2.next()) {
-                        HashMap<String, String> data = new HashMap<String, String>();
-
-                        data.put("stay_no", epd_stayno[i]);
-                        data.put("stay_name", rs2.getString("stay_name"));
-                        data.put("stay_location", rs2.getString("stay_location"));
-                        data.put("stay_room_people_min", rs2.getString("stay_room_people_min"));                      
-                        data.put("bbs_title", rs.getString("bbs_title"));
-                        data.put("bbs_no", rs.getString("bbs_no"));                        
-                        data.put("bbs_day", eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend")));
-                        
-                        if(rs.getString("bbs_file1") != null) {
-                            data.put("bbs_photo", rs.getString("bbs_file1"));
-                        }else if(rs.getString("bbs_file2") != null) {
-                            data.put("bbs_photo", rs.getString("bbs_file2"));
-                        }else if(rs.getString("bbs_file3") != null) {
-                            data.put("bbs_photo", rs.getString("bbs_file3"));
-                        }else if(rs.getString("bbs_file4") != null) {
-                            data.put("bbs_photo", rs.getString("bbs_file4"));
-                        }else if(rs.getString("bbs_file5") != null) {
-                            data.put("bbs_photo", rs.getString("bbs_file5"));
-                        }else{
-                            data.put("bbs_photo", null);
+                    // 쪼갠 숙소 번호로 반복
+                    for(int i=0; i<epd_stayno.length; i++){
+                        sql2 = "select * from staykey_stay where stay_no = ?";
+                        pstmt2 = con.prepareStatement(sql2);
+                        pstmt2.setInt(1, Integer.parseInt(epd_stayno[i]));
+                        rs2 = pstmt2.executeQuery();
+    
+                        // 숙소 정보가 있으면 HashMap에 데이터 저장하고, 그 HashMap을 ArrayList에 넣기
+                        if(rs2.next()) {
+                            HashMap<String, String> data = new HashMap<String, String>();
+    
+                            data.put("stay_no", epd_stayno[i]);
+                            data.put("stay_name", rs2.getString("stay_name"));
+                            data.put("stay_location", rs2.getString("stay_location"));
+                            data.put("stay_room_people_min", rs2.getString("stay_room_people_min"));                      
+                            data.put("bbs_title", rs.getString("bbs_title"));
+                            data.put("bbs_no", rs.getString("bbs_no"));                        
+                            data.put("bbs_day", eventDate.remainDate(rs.getString("bbs_showstart"), rs.getString("bbs_showend")));
+                            
+                            if(rs.getString("bbs_file1") != null) {
+                                data.put("bbs_photo", rs.getString("bbs_file1"));
+                            }else if(rs.getString("bbs_file2") != null) {
+                                data.put("bbs_photo", rs.getString("bbs_file2"));
+                            }else if(rs.getString("bbs_file3") != null) {
+                                data.put("bbs_photo", rs.getString("bbs_file3"));
+                            }else if(rs.getString("bbs_file4") != null) {
+                                data.put("bbs_photo", rs.getString("bbs_file4"));
+                            }else if(rs.getString("bbs_file5") != null) {
+                                data.put("bbs_photo", rs.getString("bbs_file5"));
+                            }else{
+                                data.put("bbs_photo", null);
+                            }
+                            
+                            if(rs2.getString("stay_file1") != null) {
+                                data.put("stay_photo", rs2.getString("stay_file1"));
+                            }else if(rs2.getString("stay_file2") != null) {
+                                data.put("stay_photo", rs2.getString("stay_file2"));
+                            }else if(rs2.getString("stay_file3") != null) {
+                                data.put("stay_photo", rs2.getString("stay_file3"));
+                            }else if(rs2.getString("stay_file4") != null) {
+                                data.put("stay_photo", rs2.getString("stay_file4"));
+                            }else if(rs2.getString("stay_file5") != null) {
+                                data.put("stay_photo", rs2.getString("stay_file5"));
+                            }else{
+                                data.put("stay_photo", null);
+                            }
+    
+                            list.add(data);
                         }
-                        
-                        if(rs2.getString("stay_file1") != null) {
-                            data.put("stay_photo", rs2.getString("stay_file1"));
-                        }else if(rs2.getString("stay_file2") != null) {
-                            data.put("stay_photo", rs2.getString("stay_file2"));
-                        }else if(rs2.getString("stay_file3") != null) {
-                            data.put("stay_photo", rs2.getString("stay_file3"));
-                        }else if(rs2.getString("stay_file4") != null) {
-                            data.put("stay_photo", rs2.getString("stay_file4"));
-                        }else if(rs2.getString("stay_file5") != null) {
-                            data.put("stay_photo", rs2.getString("stay_file5"));
-                        }else{
-                            data.put("stay_photo", null);
-                        }
-
-                        list.add(data);
                     }
                 }
             }

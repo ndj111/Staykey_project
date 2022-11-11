@@ -31,7 +31,7 @@
 					<span>통신판매업신고 : 제2022-서울중구-0000호</span>
 					<span>관광사업자등록 : 일반여행업 2022-12345호(중구청)</span>
 				</div>
-				<div class="fwi-copy">Copyright &copy; 2022 All rights reserved.</div>
+				<div class="fwi-copy">Copyright &copy; 2022 All rights reserved.<c:if test="${login_type == 'admin'}"> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/admin/" target="_blank">관리자</a></c:if></div>
 			</div>
 		</div>
    </footer>

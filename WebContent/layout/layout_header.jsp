@@ -76,19 +76,19 @@
                     <input type="text" name="ps_stay" placeholder="원하는 스테이/지역을 검색해 보세요." />
                     <ul>
                         <li><a href="<%=request.getContextPath()%>/stayList.do">국내전체</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=제주">제주</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=서울">서울</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=강원">강원</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=부산">부산</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=경기">경기</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=충청">충청</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=경상">경상</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=전라">전라</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=인천">인천</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=광주">광주</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=대전">대전</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=대구">대구</a></li>
-                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_location=울산">울산</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=제주">제주</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=서울">서울</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=강원">강원</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=부산">부산</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=경기">경기</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=충청">충청</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=경상">경상</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=전라">전라</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=인천">인천</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=광주">광주</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=대전">대전</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=대구">대구</a></li>
+                        <li><a href="<%=request.getContextPath()%>/stayList.do?ps_stay=울산">울산</a></li>
                     </ul>
                     <button type="submit">SEARCH <i class="icon-arrow-right"></i></button>
                     </form>

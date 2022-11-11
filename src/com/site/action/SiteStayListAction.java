@@ -30,7 +30,6 @@ public class SiteStayListAction implements Action {
         /////////////////////////////////////////////////////////////
         // 검색용 변수 정의
         String ps_stay = "";
-        String ps_location = "";
         String ps_type = "";
         String[] get_type = null;
         String ps_order = "";
@@ -94,21 +93,10 @@ public class SiteStayListAction implements Action {
 			ps_type = "all";
 		}
 
-        // 주소값 지역
-        if(request.getParameter("ps_location") != null){ 
-            ps_location = request.getParameter("ps_location"); 
-            if(ps_location.equals("전체")) {
-                ps_location = "";
-            }
-        }else { 
-            ps_location = ""; 
-        }
-
         if(request.getParameter("ps_order") != null){ ps_order = request.getParameter("ps_order").trim(); }else{ ps_order = "no_desc"; }
 
         // 뷰에 전달할 매개변수 추가
         map.put("ps_stay", ps_stay);
-        map.put("ps_location", ps_location);
         map.put("ps_start", ps_start);
         map.put("ps_end", ps_end);
         map.put("ps_people_adult", ps_people_adult);

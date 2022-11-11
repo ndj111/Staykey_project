@@ -126,8 +126,8 @@
 			<tr>
 				<th>상단 이미지</th>
 				<td colspan="3"><input type="file" name="mag_top_img"
-					class="form-control w-50" /> <c:if
-						test="${!empty dto.bbs_top_img}">
+					class="form-control w-50" /> 
+					<c:if test="${!empty dto.bbs_top_img}">
 						<p class="mt-2">
 							<img src="<%=request.getContextPath()%>${dto.bbs_top_img}"
 								style="max-height: 250px;" alt="" />
@@ -174,7 +174,7 @@
 			<tr>
 				<th>글 내용1</th>
 				<td colspan="3"><textarea name="mag_content1"
-						class="form-control" cols="80" rows="10">${dto.bbs_content1}</textarea></td>
+						class="form-control" cols="80" rows="10" required>${dto.bbs_content1}</textarea></td>
 			</tr>
 
 			<tr>
@@ -184,8 +184,8 @@
 			<tr>
 				<th>상세 이미지2</th>
 				<td colspan="3"><input type="file" name="mag_detail_img2"
-					class="form-control w-50" /> <c:if
-						test="${!empty dto.bbs_detail_img2}">
+					class="form-control w-50" /> 
+					<c:if test="${!empty dto.bbs_detail_img2}">
 						<p class="mt-2">
 							<img src="<%=request.getContextPath()%>${dto.bbs_detail_img2}"
 								style="max-height: 250px;" alt="" />
@@ -196,7 +196,7 @@
 			<tr>
 				<th>글 내용2</th>
 				<td colspan="3"><textarea name="mag_content2"
-						class="form-control" cols="80" rows="10">${dto.bbs_content2}</textarea></td>
+						class="form-control" cols="80" rows="10" required>${dto.bbs_content2}</textarea></td>
 			</tr>
 
 			<tr>
@@ -213,7 +213,7 @@
 			<tr>
 				<th>글 내용3</th>
 				<td colspan="3"><textarea name="mag_content3"
-						class="form-control" cols="80" rows="10">${dto.bbs_content3}</textarea></td>
+						class="form-control" cols="80" rows="10" required>${dto.bbs_content3}</textarea></td>
 			</tr>
 
 			<tr>
@@ -236,10 +236,10 @@
 			<div class="gwb-wrap">
 				<div class="gwb-left"></div>
 
-				<div class="gwb-center">
-					<button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 목록보기</button>
-					<button type="submit" class="btn btn-lg btn-primary mx-1"><i class="fa fa-pencil"></i> 등록하기</button>
-				</div>
+            <div class="gwb-center">
+                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 취소하기</button>
+                <button type="submit" class="btn btn-lg btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
+            </div>
 
 				<div class="gwb-right"></div>
 			</div>
@@ -300,9 +300,13 @@
 				</c:choose>
 			</div>
 
-			<div class="modal-footer text-center">
-				<button type="button" id="btn btn-secondary btn-close" data-dismiss="modal">닫기</button>
-			</div>
+
+            <div class="gwb-center">
+                <button type="button" class="btn btn-lg btn-outline-secondary mx-1" onclick="history.back();"><i class="fa fa-bars"></i> 취소하기</button>
+                <button type="submit" class="btn btn-lg btn-success mx-1"><i class="fa fa-save"></i> 수정하기</button>
+            </div>
+
+    
 		</div>
 	</div>
 </div>

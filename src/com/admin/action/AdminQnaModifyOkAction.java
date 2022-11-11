@@ -30,7 +30,7 @@ public class AdminQnaModifyOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if (check > 0) {
-            out.println("<script>opener.parent.location.reload(); location.href='qnaView.do?no="+no+"';</script>");
+            out.println("<script>opener.parent.location.reload(); window.close();</script>");
 
         }else{
             out.println("<script>alert('문의글 상태 수정 중 에러가 발생하였습니다.'); history.back();</script>");

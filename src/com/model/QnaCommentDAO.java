@@ -288,6 +288,37 @@ public class QnaCommentDAO {
         return result;
     }
     
+    // ======================================================
+    // 문의글 리스트에서 삭제했을때 문의글 댓글까지 삭제 + 글번호 재작업 메서드
+    // ======================================================
+
+    public int deleteQnaComment(int no) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "delete from staykey_qna_comment where comment_qnano = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            result = pstmt.executeUpdate();
+
+            sql = "update staykey_qna_comment set comment_qnano = comment_qnano - 1 where comment_qnano > ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+
+       
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+    
    
 
 }

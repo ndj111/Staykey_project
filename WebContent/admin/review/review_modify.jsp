@@ -8,7 +8,7 @@
 
 <c:set var="dto" value="${member}" />
 
-
+<script type="text/javascript">$("#nav-review").addClass("now");</script>
 <div class="d-flex justify-content flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-4 border-bottom">
     <h2>후기 수정</h2>
     <small>후기의 정보를 수정 할 수 있습니다.</small>
@@ -29,11 +29,14 @@
         </colgroup>
 
         <tr>
-           <th>숙소명</th>
-           <td colspan="3">
+           <th>숙소 이름</th>
+           <td>
              	<input type="text" name="review_stayname" value="${dto.review_stayname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
-           		<input type="text" name="review_roomname" value="${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            </td>
+           <th>사용 객실</th>            
+           <td>
+            	<input type="text" name="review_roomname" value=" ${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+           </td>                  
         </tr>
         
         <tr>

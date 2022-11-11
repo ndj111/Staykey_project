@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
@@ -105,7 +106,18 @@ public class SiteMypageInfoOkAction implements Action {
 		ActionForward forward = new ActionForward();
 		int result = dao.infoModifySite(dto);
 
+		HttpSession session = request.getSession();
+		
 		if(result > 0){
+			session.setAttribute("login_id", dto.getMember_id());
+			session.setAttribute("login_pw", dto.getMember_pw());
+			session.setAttribute("login_name", dto.getMember_name());
+            session.setAttribute("login_email", dto.getMember_email());
+            
+    		if(modify_pw != null && modify_pw.length() > 0){
+    		    dto.setMember_pw(modify_pw);
+    		}
+    		
 			forward.setRedirect(true);
 			forward.setPath("mypageInfo.do");
 

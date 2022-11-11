@@ -87,7 +87,9 @@ public class ReservDAO {
         // 검색용 설정
         String search_sql = " where reserv_no > 0";
 
-        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("reserv")) {
+            search_sql += " and reserv_status = 'reserv'";
+        }else if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql += " and reserv_status = 'cancel'";
         }
         if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
@@ -144,7 +146,9 @@ public class ReservDAO {
         String search_sql2 = "";
 
 
-        if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
+        if(map.get("ps_status") != "" && map.get("ps_status").equals("reserv")) {
+            search_sql2 += " and reserv_status = 'reserv'";
+        }else if(map.get("ps_status") != "" && map.get("ps_status").equals("cancel")) {
             search_sql2 += " and reserv_status = 'cancel'";
         }
         if(map.get("ps_sess") != "" && map.get("ps_sess") != null) {
@@ -300,8 +304,11 @@ public class ReservDAO {
                 dto.setReserv_people_kid(rs.getInt("reserv_people_kid"));
                 dto.setReserv_people_baby(rs.getInt("reserv_people_baby"));
                 dto.setReserv_pickup(rs.getString("reserv_pickup"));
-                dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
                 dto.setReserv_date(rs.getString("reserv_date"));
+                                
+                if(rs.getString("reserv_request") != null){
+                    dto.setReserv_request(rs.getString("reserv_request").replace("\n", "<br />"));
+                }
             }
 
         } catch (Exception e) {
@@ -597,6 +604,24 @@ public class ReservDAO {
                     }
                 }
                 dto.setReserv_stay_photo(reservStayPhoto);
+
+
+                // 리뷰 작성여부
+                String reservReview = "N";
+                int reservReviewRoom = 0;
+                sql2 = "select count(*) from staykey_review where review_stayno = ? and review_roomno = ? and review_id = ?";
+                pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, rs.getInt("reserv_stayno"));
+                pstmt2.setInt(2, rs.getInt("reserv_roomno"));
+                pstmt2.setString(3, id);
+                rs2 = pstmt2.executeQuery();
+
+                if(rs2.next() && rs2.getInt(1) > 0) {
+                    reservReview = "Y";
+                    reservReviewRoom = rs.getInt("reserv_roomno");
+                }
+                dto.setReserv_review(reservReview);
+                dto.setReserv_review_roomno(reservReviewRoom);
 
 
                 list.add(dto);

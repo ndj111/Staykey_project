@@ -31,8 +31,8 @@
 
         <div class="im-form">
             <div>
-                <label for="join_id">아이디</label>
-                <input type="text" name="modify_id" value="${dto.member_id}" readonly="readonly" />
+                <label for="modify_id">아이디</label>
+                <input type="text" id="modify_id" name="modify_id" value="${dto.member_id}" readonly="readonly" />
             </div>
 
             <div>
@@ -47,7 +47,7 @@
             </div>
 
             <div>
-                <input type="password" name="modify_pw_re" placeholder="변경할 비밀번호를 확인해 주세요." />
+                <input type="password" name="modify_pw_re" placeholder="변경할 비밀번호를 확인해 주세요."/>
                 <p class="error">비밀번호가 일치하지 않습니다.</p>
             </div>
 

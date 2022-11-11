@@ -33,6 +33,8 @@ public class ReservDTO {
 
     private String reserv_class;
     private String reserv_stay_photo;
+    private String reserv_review;
+    private int reserv_review_roomno;
 
 
     public int getReserv_no() {
@@ -221,5 +223,17 @@ public class ReservDTO {
     }
     public void setReserv_stay_photo(String reserv_stay_photo) {
         this.reserv_stay_photo = reserv_stay_photo;
+    }
+    public String getReserv_review() {
+        return reserv_review;
+    }
+    public void setReserv_review(String reserv_review) {
+        this.reserv_review = reserv_review;
+    }
+    public int getReserv_review_roomno() {
+        return reserv_review_roomno;
+    }
+    public void setReserv_review_roomno(int reserv_review_roomno) {
+        this.reserv_review_roomno = reserv_review_roomno;
     }
 }

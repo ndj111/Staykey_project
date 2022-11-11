@@ -116,20 +116,20 @@ ${ msg }
         <div class="tt-left">총 <b><fmt:formatNumber value="${listCount}" /></b> 개의 숙소</div>
         <div class="tt-right">
             <select name="ps_order" class="form-select" onChange="location.href='<%=request.getContextPath()%>/admin/stayList.do?ps_type=${map.ps_type}&ps_name=${map.ps_name}&ps_location=${map.ps_location}&ps_location_sub=${map.ps_location_sub}&ps_phone=${map.ps_phone}&ps_order='+this.value;">
-                <option value="no_desc"<c:if test="${map.ps_order == 'no_desc'}"> selected="selected"</c:if>>높은번호순</option>
-                <option value="no_asc"<c:if test="${map.ps_order == 'no_asc'}"> selected="selected"</c:if>>낮은번호순</option>
+                <option value="no_desc"<c:if test="${map.ps_order == 'no_desc'}"> selected="selected"</c:if>>높은 번호 순</option>
+                <option value="no_asc"<c:if test="${map.ps_order == 'no_asc'}"> selected="selected"</c:if>>낮은 번호 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="reserv_desc"<c:if test="${map.ps_order == 'reserv_desc'}"> selected="selected"</c:if>>예약많은순</option>
-                <option value="reserv_asc"<c:if test="${map.ps_order == 'reserv_asc'}"> selected="selected"</c:if>>예약적은순</option>
+                <option value="reserv_desc"<c:if test="${map.ps_order == 'reserv_desc'}"> selected="selected"</c:if>>예약 많은 순</option>
+                <option value="reserv_asc"<c:if test="${map.ps_order == 'reserv_asc'}"> selected="selected"</c:if>>예약 적은 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수높은순</option>
-                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수낮은순</option>
+                <option value="hit_desc"<c:if test="${map.ps_order == 'hit_desc'}"> selected="selected"</c:if>>조회수 높은 순</option>
+                <option value="hit_asc"<c:if test="${map.ps_order == 'hit_asc'}"> selected="selected"</c:if>>조회수 낮은 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>가나다역순</option>
-                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>가나다순</option>
+                <option value="name_desc"<c:if test="${map.ps_order == 'name_desc'}"> selected="selected"</c:if>>가나다 역순</option>
+                <option value="name_asc"<c:if test="${map.ps_order == 'name_asc'}"> selected="selected"</c:if>>가나다 순</option>
                 <option value="" disabled="disabled">---------------</option>
-                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>최신등록순</option>
-                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>오래된등록순</option>
+                <option value="date_desc"<c:if test="${map.ps_order == 'date_desc'}"> selected="selected"</c:if>>최신 등록 순</option>
+                <option value="date_asc"<c:if test="${map.ps_order == 'date_asc'}"> selected="selected"</c:if>>오래된 등록 순</option>
             </select>
         </div>
     </div>

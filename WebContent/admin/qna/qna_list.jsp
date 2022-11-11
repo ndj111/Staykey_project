@@ -84,7 +84,7 @@
                 <th>No.</th>
                 <th>상태</th>
                 <th>제목</th>
-                <th>작성자/아이디</th>
+                <th>작성자<br>아이디</th>
                 <th>조회수</th>
                 <th>등록일</th>
                 <th>기능</th>
@@ -95,7 +95,7 @@
             <c:choose>
             <c:when test="${!empty list }">
             <c:forEach items="${list}" var="dto">
-            <c:set var="showLink" value="onclick=\"popWindow('../admin/qnaView.do?no=${dto.bbs_no}', '700', '900');\"" />
+            <c:set var="showLink" value="onclick=\"popWindow('../admin/qnaView.do?no=${dto.bbs_no}', '800', '900');\"" />
             <tr>
                 <td ${showLink}>${dto.bbs_no}</td>
                 <td>
@@ -103,13 +103,18 @@
                 	<c:if test="${dto.bbs_status == 'ing'}"><span class="text-success">처리중</span></c:if>
                 	<c:if test="${dto.bbs_status == 'send'}"><span class="text-primary">대기</span></c:if>
                 </td>
-                <td ${showLink} class="text-left">${dto.bbs_title}</td>
+                <td ${showLink} class="text-left">
+                    ${dto.bbs_title}
+                    <c:if test="${!empty dto.bbs_file1}"><i class="fa fa-floppy-o"></i></c:if>
+                    <c:if test="${!empty dto.bbs_file2}"><i class="fa fa-floppy-o"></i></c:if>
+                    <c:if test="${dto.bbs_comment > 0}"><span class="com">(${dto.bbs_comment})</span></c:if>
+                </td>
                 <td ${showLink} class="py-3">
                 	<p><b>${dto.bbs_writer_name}</b></p>
                 	<p class="eng">${dto.bbs_writer_id}</p>
                 </td>
-                <td ${showLink}>${dto.bbs_hit}</td>
-                <td ${showLink}>${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
+                <td ${showLink} class="eng">${dto.bbs_hit}</td>
+                <td ${showLink} class="eng">${dto.bbs_date.substring(0, 10)}<br />${dto.bbs_date.substring(11)}</td>
                 <td>
                     <a href="<%=request.getContextPath()%>/admin/qnaDeleteOk.do?no=${dto.bbs_no}" class="btn btn-sm btn-outline-danger m-1" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
                 </td>

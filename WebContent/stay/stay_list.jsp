@@ -34,7 +34,9 @@
 	            <button type="button" class="ss-button" id="ps_start">선택하세요</button>
 	            </c:when>
 	            <c:otherwise>
-	            <button type="button" class="ss-button" id="ps_start">${ map.ps_start }</button>           
+	            <button type="button" class="ss-button" id="ps_start">
+	            <fmt:parseDate value="${ map.ps_start }" var="startDate" pattern="yyyy-MM-dd"/>
+	            <fmt:formatDate pattern="yyyy. MM. dd" value="${ startDate }"/></button>           
 	            </c:otherwise>
             </c:choose>
             <input type="hidden" name="ps_start" value="${ map.ps_start }" />
@@ -46,7 +48,9 @@
 	            <button type="button" class="ss-button" id="ps_end">선택하세요</button>
 	            </c:when>
 	            <c:otherwise>
-	            <button type="button" class="ss-button" id="ps_end">${ map.ps_end }</button>           
+	            <button type="button" class="ss-button" id="ps_end">
+	            <fmt:parseDate value="${ map.ps_end }" var="endDate" pattern="yyyy-MM-dd"/>
+	            <fmt:formatDate pattern="yyyy. MM. dd" value="${ endDate }"/></button>           
 	            </c:otherwise>
             </c:choose>
             <input type="hidden" name="ps_end" value="${ map.ps_end }" />

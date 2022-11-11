@@ -13,9 +13,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
-
-
-
 public class ReviewDAO {
     Connection con = null;
     PreparedStatement pstmt = null;
@@ -117,11 +114,11 @@ public class ReviewDAO {
 
 
     // ======================================================
-    // 	후기 전체 리스트 메서드
+    //  후기 전체 리스트 메서드
     // ======================================================
     public List<ReviewDTO> reviewList(int page, int rowsize, Map<String, Object> map) {
-    	List<ReviewDTO> list = new ArrayList<ReviewDTO>();
-    	
+        List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+        
         int startNo = (page * rowsize) - (rowsize - 1);
         int endNo = (page * rowsize);
 
@@ -158,48 +155,56 @@ public class ReviewDAO {
             order_sql = "review_date desc";
         }
 
-		try {
-			openConn();
-			
-	           sql = "select * from " + "(select row_number() over(order by " + order_sql
-	                    + ") rnum, b.* from staykey_review b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
-	                    + search_sql2;
+        try {
+            openConn();
+            
+               sql = "select * from " + "(select row_number() over(order by " + order_sql
+                        + ") rnum, b.* from staykey_review b " + search_sql1 + ") " + "where rnum >= ? and rnum <= ?"
+                        + search_sql2;
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
             rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				ReviewDTO dto = new ReviewDTO();
-				
-				dto.setReview_no(rs.getInt("review_no"));
-				dto.setReview_stayno(rs.getInt("review_stayno"));
-				dto.setReview_stayname(rs.getString("review_stayname"));
-				dto.setReview_roomno(rs.getInt("review_roomno"));
-				dto.setReview_roomname(rs.getString("review_roomname"));
-				dto.setReview_point_total(rs.getDouble("review_point_total"));
-				dto.setReview_point1(rs.getInt("review_point1"));
-				dto.setReview_point2(rs.getInt("review_point2"));
-				dto.setReview_point3(rs.getInt("review_point3"));
-				dto.setReview_point4(rs.getInt("review_point4"));
-				dto.setReview_point5(rs.getInt("review_point5"));
-				dto.setReview_point6(rs.getInt("review_point6"));
-				dto.setReview_content(rs.getString("review_content"));
-				dto.setReview_file(rs.getString("review_file"));
-				dto.setReview_id(rs.getString("review_id"));
-				dto.setReview_pw(rs.getString("review_pw"));
-				dto.setReview_name(rs.getString("review_name"));
-				dto.setReview_date(rs.getString("review_date"));
-				
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			closeConn(rs, pstmt, con);
-		}
-		return list;
+            
+            while(rs.next()) {
+                
+                ReviewDTO dto = new ReviewDTO();
+                
+                dto.setReview_no(rs.getInt("review_no"));
+                dto.setReview_stayno(rs.getInt("review_stayno"));
+                dto.setReview_stayname(rs.getString("review_stayname"));
+                dto.setReview_roomno(rs.getInt("review_roomno"));
+                dto.setReview_roomname(rs.getString("review_roomname"));
+                dto.setReview_point_total(rs.getDouble("review_point_total"));
+                dto.setReview_point1(rs.getInt("review_point1"));
+                dto.setReview_point2(rs.getInt("review_point2"));
+                dto.setReview_point3(rs.getInt("review_point3"));
+                dto.setReview_point4(rs.getInt("review_point4"));
+                dto.setReview_point5(rs.getInt("review_point5"));
+                dto.setReview_point6(rs.getInt("review_point6"));    
+                String reviewContent = rs.getString("review_content");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }              
+                dto.setReview_content(reviewContent);
+                dto.setReview_file(rs.getString("review_file"));
+                dto.setReview_id(rs.getString("review_id"));
+                dto.setReview_pw(rs.getString("review_pw"));
+                dto.setReview_name(rs.getString("review_name"));
+                dto.setReview_date(rs.getString("review_date"));
+                
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            closeConn(rs, pstmt, con);
+        }
+        return list;
     }
 
     
@@ -207,45 +212,53 @@ public class ReviewDAO {
     // 리뷰 정보 가져오는 메서드
     // ======================================================
     public ReviewDTO getReviewInfo(int no) {
-    	ReviewDTO dto = null;
-    	
-    	try {
-    		openConn();
-    		
+        ReviewDTO dto = null;
+        
+        try {
+            openConn();
+            
             sql = "select * from staykey_review where review_no = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, no);
-	        rs = pstmt.executeQuery();
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, no);
+            rs = pstmt.executeQuery();
 
-	        if (rs.next()) {
-	        	dto = new ReviewDTO();
-	        	
-				dto.setReview_no(rs.getInt("review_no"));
-				dto.setReview_stayno(rs.getInt("review_stayno"));
-				dto.setReview_stayname(rs.getString("review_stayname"));
-				dto.setReview_roomno(rs.getInt("review_roomno"));
-				dto.setReview_roomname(rs.getString("review_roomname"));
-				dto.setReview_point_total(rs.getDouble("review_point_total"));
-				dto.setReview_point1(rs.getInt("review_point1"));
-				dto.setReview_point2(rs.getInt("review_point2"));
-				dto.setReview_point3(rs.getInt("review_point3"));
-				dto.setReview_point4(rs.getInt("review_point4"));
-				dto.setReview_point5(rs.getInt("review_point5"));
-				dto.setReview_point6(rs.getInt("review_point6"));
-				dto.setReview_content(rs.getString("review_content").replace("\n", "<br />"));
-				dto.setReview_file(rs.getString("review_file"));
-				dto.setReview_id(rs.getString("review_id"));
-				dto.setReview_pw(rs.getString("review_pw"));
-				dto.setReview_name(rs.getString("review_name"));
-				dto.setReview_date(rs.getString("review_date"));
-	        }
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			closeConn(rs, pstmt, con);
-		}
-    	return dto;
+            if (rs.next()) {
+                dto = new ReviewDTO();
+                
+                dto.setReview_no(rs.getInt("review_no"));
+                dto.setReview_stayno(rs.getInt("review_stayno"));
+                dto.setReview_stayname(rs.getString("review_stayname"));
+                dto.setReview_roomno(rs.getInt("review_roomno"));
+                dto.setReview_roomname(rs.getString("review_roomname"));
+                dto.setReview_point_total(rs.getDouble("review_point_total"));
+                dto.setReview_point1(rs.getInt("review_point1"));
+                dto.setReview_point2(rs.getInt("review_point2"));
+                dto.setReview_point3(rs.getInt("review_point3"));
+                dto.setReview_point4(rs.getInt("review_point4"));
+                dto.setReview_point5(rs.getInt("review_point5"));
+                dto.setReview_point6(rs.getInt("review_point6"));
+                String reviewContent = rs.getString("review_content").replace("\n", "<br />");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }       
+                dto.setReview_content(reviewContent);
+                dto.setReview_file(rs.getString("review_file"));
+                dto.setReview_id(rs.getString("review_id"));
+                dto.setReview_pw(rs.getString("review_pw"));
+                dto.setReview_name(rs.getString("review_name"));
+                dto.setReview_date(rs.getString("review_date"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            closeConn(rs, pstmt, con);
+        }
+        return dto;
     }
     
     
@@ -281,7 +294,7 @@ public class ReviewDAO {
 
     
     // ======================================================
-    // 후기를 수정 하는 메서드
+    // 후기를 수정하는 메서드
     // ======================================================
     public int reviewModify(ReviewDTO dto) {
         int result = 0;
@@ -314,8 +327,209 @@ public class ReviewDAO {
         }
         return result;
     }
+
+
+
+
+    // ======================================================
+    // 숙소 리뷰 목록 가져오기 (사이트)
+    // ======================================================
+    public List<ReviewDTO> getReviewList(int stay_no) {
+        List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+
+        try {
+            openConn();
+
+            sql = "select * from staykey_review where review_stayno = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                ReviewDTO dto = new ReviewDTO();
+
+                dto.setReview_no(rs.getInt("review_no"));
+                dto.setReview_stayno(rs.getInt("review_stayno"));
+                dto.setReview_stayname(rs.getString("review_stayname"));
+                dto.setReview_roomno(rs.getInt("review_roomno"));
+                dto.setReview_roomname(rs.getString("review_roomname"));
+                dto.setReview_point_total(rs.getDouble("review_point_total"));
+                dto.setReview_point1(rs.getInt("review_point1"));
+                dto.setReview_point2(rs.getInt("review_point2"));
+                dto.setReview_point3(rs.getInt("review_point3"));
+                dto.setReview_point4(rs.getInt("review_point4"));
+                dto.setReview_point5(rs.getInt("review_point5"));
+                dto.setReview_point6(rs.getInt("review_point6"));
+                String reviewContent = rs.getString("review_content").replace("\n", "<br />");      
+                if(reviewContent.contains("시발") || reviewContent.contains("미친") || reviewContent.contains("새끼") || reviewContent.contains("시팔")|| reviewContent.contains("미쳤나")) {
+                	reviewContent = reviewContent.replace("시발", "***");
+                	reviewContent = reviewContent.replace("미친", "***");
+                	reviewContent = reviewContent.replace("새끼", "***");
+                	reviewContent = reviewContent.replace("시팔", "***");
+                	reviewContent = reviewContent.replace("미쳤나", "***");
+                }      
+                dto.setReview_content(reviewContent);
+                dto.setReview_file(rs.getString("review_file"));
+                dto.setReview_id(rs.getString("review_id"));
+                dto.setReview_pw(rs.getString("review_pw"));
+                dto.setReview_name(rs.getString("review_name"));
+                dto.setReview_date(rs.getString("review_date"));
+
+                list.add(dto);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return list;
+    }
+
+
+
+    // ======================================================
+    // 숙소 리뷰 전체 갯수 (사이트)
+    // ======================================================
+    public int getReviewTotal(int stay_no) {
+        int result = 0;
+
+        try {
+            openConn();
+
+            sql = "select count(*) from staykey_review where review_stayno = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) result = rs.getInt(1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
+
+    // ======================================================
+    // 숙소 리뷰 전체 합계평점 (사이트)
+    // ======================================================
+    public double getReviewTotalPoint(int stay_no) {
+        double result = 0;
+
+        try {
+            openConn();
+
+            sql = "select count(*) as total_count, sum(review_point_total) as total_sum from staykey_review where review_stayno = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getDouble("total_sum") / rs.getInt("total_count");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
+
+    // ======================================================
+    // 숙소 리뷰 전체 개별평점 (사이트)
+    // ======================================================
+    public double getReviewEachPoint(int stay_no, int point) {
+        double result = 0;
+
+        try {
+            openConn();
+
+            sql = "select count(*) as total_count, sum(review_point" + point + ") as sum_point" + point + " from staykey_review where review_stayno = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, stay_no);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getDouble("sum_point"+point) / rs.getInt("total_count");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
     
-    
-    
+
+
+
+
+    // ======================================================
+    // 후기 등록 하는 메서드
+    // ======================================================
+    public String writeReview(ReviewDTO dto) {
+        String result = null;
+        int count = 0;
+
+        try {
+            openConn();
+
+            sql = "select max(review_no) from staykey_review";
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            if(rs.next()) count = rs.getInt(1) + 1;
+
+            sql = "insert into staykey_review values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setInt(1, count);
+            pstmt.setInt(2, dto.getReview_stayno());
+            pstmt.setString(3, dto.getReview_stayname());
+            pstmt.setInt(4, dto.getReview_roomno());
+            pstmt.setString(5, dto.getReview_roomname());
+            pstmt.setDouble(6, dto.getReview_point_total());
+            pstmt.setInt(7, dto.getReview_point1());
+            pstmt.setInt(8, dto.getReview_point2());
+            pstmt.setInt(9, dto.getReview_point3());
+            pstmt.setInt(10, dto.getReview_point4());
+            pstmt.setInt(11, dto.getReview_point5());
+            pstmt.setInt(12, dto.getReview_point6());
+            pstmt.setString(13, dto.getReview_content());
+            pstmt.setString(14, dto.getReview_file());
+            pstmt.setString(15, dto.getReview_id());
+            pstmt.setString(16, dto.getReview_pw());
+            pstmt.setString(17, dto.getReview_name());
+
+            int res = pstmt.executeUpdate();
+            result = res + "/" + count;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            closeConn(rs, pstmt, con);
+        }
+
+        return result;
+    }
+
+
     
 }

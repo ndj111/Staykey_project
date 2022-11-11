@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import com.controller.Action;
 import com.controller.ActionForward;
+import com.model.ReviewDAO;
+import com.model.ReviewDTO;
 import com.model.StayDAO;
 import com.model.StayDTO;
 import com.model.StayRoomDTO;
@@ -43,6 +45,29 @@ public class SiteStayViewAction implements Action {
             wishChk = wdao.chkStayWish(stayNo, login_id);
         }
         request.setAttribute("wishChk", wishChk);
+
+
+        // 숙소 리뷰 목록
+        ReviewDAO rdao = ReviewDAO.getInstance();
+        List<ReviewDTO> rlist = rdao.getReviewList(stayNo);
+        request.setAttribute("reviewlist", rlist);
+
+        // 숙소 리뷰 갯수
+        int rtotal = rdao.getReviewTotal(stayNo);
+        request.setAttribute("reviewTotal", rtotal);
+
+        // 숙소 리뷰 합계 평점
+        double rpoint = rdao.getReviewTotalPoint(stayNo);
+        request.setAttribute("reviewPoint", rpoint);
+
+        // 숙소 리뷰 개별 평점
+        request.setAttribute("rPoint1", rdao.getReviewEachPoint(stayNo, 1));
+        request.setAttribute("rPoint2", rdao.getReviewEachPoint(stayNo, 2));
+        request.setAttribute("rPoint3", rdao.getReviewEachPoint(stayNo, 3));
+        request.setAttribute("rPoint4", rdao.getReviewEachPoint(stayNo, 4));
+        request.setAttribute("rPoint5", rdao.getReviewEachPoint(stayNo, 5));
+        request.setAttribute("rPoint6", rdao.getReviewEachPoint(stayNo, 6));
+
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);

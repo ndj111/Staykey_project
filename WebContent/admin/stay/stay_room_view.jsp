@@ -155,8 +155,8 @@ ${ msg }
     <!-- 버튼 //START -->
     <div class="d-flex justify-content-center mb-4">
         <a href="<%=request.getContextPath()%>/admin/stayRoomDeleteOk.do?room_no=${room.room_no}&stay_no=${stay.stay_no}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?\n※ 삭제된 정보는 복구할 수 없습니다.');"><i class="fa fa-trash-o"></i> 삭제하기</a>
-        <button type="button" class="btn btn-secondary mx-3" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
-        <button type="button" class="btn btn-warning" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomModify.do?room_no=${room.room_no}&stay_no=${stay.stay_no}', '700', '900'); window.close();"><i class="fa fa-pencil"></i> 수정하기</button>
+        <button type="button" class="btn btn-success mx-3" onclick="popWindow('<%=request.getContextPath()%>/admin/stayRoomModify.do?room_no=${room.room_no}&stay_no=${stay.stay_no}', '700', '900'); window.close();"><i class="fa fa-save"></i> 수정하기</button>
+        <button type="button" class="btn btn-secondary" onclick="window.close();"><i class="fa fa-times"></i> 창닫기</button>
     </div>
     <!-- 버튼 //END -->
 

@@ -366,3 +366,55 @@ addWish = function(btn, stay_no, member_id) {
 }
 
 
+
+
+// 리뷰 그래프
+function drawReview(canvasID, point1, point2, point3, point4, point5, point6){
+    var canvas = document.getElementById(canvasID);
+    if(canvas.getContext){
+        var ctx = canvas.getContext("2d");
+
+        const calc_width = document.getElementById(canvasID).offsetWidth;
+        const calc_height = document.getElementById(canvasID).offsetHeight;
+        const calc_w_full = calc_width/2;
+        const calc_w_half = calc_width/4;
+        const calc_h_full = calc_height/2;
+        const calc_h_half = calc_height/4;
+
+        var grd = ctx.createLinearGradient(0, 0, calc_width, calc_height);
+        grd.addColorStop(0, "#e67000");
+        grd.addColorStop(1, "#f40086");
+        ctx.fillStyle = grd;
+
+        ctx.beginPath();
+
+        ctx.moveTo(calc_w_full, (calc_h_full-((point1/10)*calc_h_full))); //접근성
+        ctx.lineTo((calc_w_full*(point2/10)+calc_w_full), (calc_h_half-((point2/10)*calc_h_half)+calc_h_half)); //객실시설
+        ctx.lineTo(((calc_w_full*point3/10)+calc_w_full), ((calc_h_half*(point3/10))+calc_h_full)); // 부대시설
+        ctx.lineTo(calc_w_full, (((point4/10)*calc_h_full)+calc_h_full)); //만족도
+        ctx.lineTo((calc_w_full*((10-point5)/10)), (((point5/10)*calc_h_half)+calc_h_full)); //식음료
+        ctx.lineTo((calc_w_full*((10-point6)/10)), ((calc_h_half*(1-(point6/10)))+calc_h_half)); //서비스
+
+        ctx.fill();
+    }
+}
+
+
+
+// 리뷰 목록 클릭
+$(function(){
+    $(".stay-view .sv-review .svr-list table tr.rlist").on("click", function(){
+        if($(this).find(".arrow i").hasClass("fa-chevron-down")){
+            $(this).find(".arrow i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+        }else{
+            $(this).find(".arrow i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+        }
+
+        const num = $(this).attr("num");
+        $(".stay-view .sv-review .svr-list table tr#show_" + num).toggle();
+    });
+});
+
+
+
+

@@ -1019,6 +1019,171 @@
 
 
 
+
+.stay-view .sv-review {
+    margin: 100px auto 0 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.stay-view .sv-review .svr-graph {
+    position: relative;
+    width: 280px;
+    max-width: 280px;
+    padding: 40px 0 15px 0;
+    background: #3d9aed;
+    text-align: center;
+}
+.stay-view .sv-review .svr-graph .stay {
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+.stay-view .sv-review .svr-graph .graph {
+    position: relative;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 40px 0 0;
+    background: url('../images/review_graph_bg.png') no-repeat 21px 0;
+}
+.stay-view .sv-review .svr-graph .graph .graph-canvas {
+    width: 170px;
+    margin: 0 auto;
+    opacity: 0.7;
+}
+.stay-view .sv-review .svr-graph .graph .graph-rate {
+    position: absolute;
+    top: 115px;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.15;
+    color: #ffc18c;
+    text-align: center;
+    text-shadow: 0 0 2px rgb(0 0 0 / 50%);
+    z-index: 2;
+}
+.stay-view .sv-review .svr-graph .graph .graph-rate strong {
+    display: block;
+    font-family: 'Lato';
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.stay-view .sv-review .svr-list {
+    width: calc(100% - 330px);
+    align-self: flex-start;
+}
+.stay-view .sv-review .svr-list .title {
+    margin-bottom: 10px;
+    font-family: 'Lato';
+    font-size: 22px;
+    color: #000;
+}
+.stay-view .sv-review .svr-list table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid #000;
+}
+.stay-view .sv-review .svr-list table td {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd !important;
+}
+.stay-view .sv-review .svr-list table tr.rlist:hover td {
+    cursor: pointer;
+    background: #f7f7f7;
+}
+.stay-view .sv-review .svr-list table td.point {
+    font-family: 'Lato';
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+}
+.stay-view .sv-review .svr-list table td.photo {}
+.stay-view .sv-review .svr-list table td.photo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+}
+.stay-view .sv-review .svr-list table td > p {
+    font-size: 15px;
+}
+.stay-view .sv-review .svr-list table td > p > span {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+}
+.stay-view .sv-review .svr-list table td p.eng {
+    font-family: 'Lato';
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.stay-view .sv-review .svr-list table td.arrow {
+    font-size: 24px;
+    color: #ccc;
+}
+.stay-view .sv-review .svr-list table tr:hover td.arrow {
+    color: #333;
+}
+
+.stay-view .sv-review .svr-list table tr.rcont {
+    display: none;
+}
+.stay-view .sv-review .svr-list table tr.rcont td {
+    line-height: 1.7;
+    padding-bottom: 35px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt {
+    display: inline-block;
+    margin: 7px 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt:before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd {
+    display: inline-block;
+    margin: 7px 20px 7px 10px;
+    font-size: 14px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd > b {
+    font-family: 'Lato';
+    font-size: 17px;
+}
+.stay-view .sv-review .svr-list table tr.rcont img {
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 15px;
+}
+
+
+
+
+
 .stay-view .sv-caution {
     padding: 100px 0;
     margin: 100px 0 -110px;

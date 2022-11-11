@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class FrontController extends HttpServlet {
@@ -22,9 +23,15 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
 
+        // 로그인 세션 가져오기
+        HttpSession session = request.getSession();
+        String login_name = (String)session.getAttribute("login_name");
+        String login_id = (String)session.getAttribute("login_id");
+
+
         String uri = request.getRequestURI();
         String command = uri.replace(request.getContextPath()+"/", "");
-        System.out.println("* NowPage >>> " + command);
+        System.out.println("\n *** [ " + login_name + "("+login_id+") ] 현재 페이지 =>>> " + command + "\n");
 
 
         Action action = null;

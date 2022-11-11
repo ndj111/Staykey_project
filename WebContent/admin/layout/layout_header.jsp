@@ -52,6 +52,47 @@
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/swiper.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/bootstrap-tagsinput.min.js"></script>
     <script language="javascript" src="<%=request.getContextPath()%>/admin/asset/js/script.js?<%=time%>"></script>
+
+    <script type="text/javascript">
+    const wsurl = "ws://121.164.91.191:8080/Staykey_project/webSocket";
+    function connectWebSocket() {
+        let webSocket = new WebSocket(wsurl);
+
+        webSocket.onmessage = function(event) {
+            console.log(" *** >> " + event.data);
+            var epd_data = event.data.split("|");
+            var m_type = epd_data[0]; //구분
+            var m_name = epd_data[1]; //이름
+            var m_id = epd_data[2]; //아이디
+            var m_cont = epd_data[3]; //내용
+            var m_num = epd_data[4]; //링크No
+
+            if(m_cont != ""){
+                popToast(m_type, m_name, m_id, m_cont, m_num);
+            }
+        };
+
+        webSocket.onopen = function() {
+            console.log(" *** webSocket Connect...");
+        };
+
+        webSocket.onclose = function() {
+            console.log(" *** webSocket Disconnect...");
+            setTimeout(function() {
+                webSocket = connectWebSocket();
+            });
+        };
+
+        webSocket.onerror = function() {
+            console.log(" *** webSocket Error...");
+        };
+
+        return webSocket;
+    }
+
+    // 웹 소켓 생성
+    var webSocket = connectWebSocket();
+    </script>
 </head>
 <body>
     <!-- #ajax-loader //START -->
@@ -66,6 +107,12 @@
         <div class="bg"></div>
     </div>
     <!-- #ajax-loader //END -->
+
+
+
+
+    <div id="toast-wrap"></div>
+
 
 
 

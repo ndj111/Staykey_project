@@ -142,7 +142,7 @@
 
 			<tr>
 				<th>글 내용1</th>
-				<td colspan="3"><textarea name="mag_content1" class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="3"><textarea name="mag_content1" class="form-control" cols="80" rows="10" required></textarea></td>
 			</tr>
 
 			<tr>
@@ -156,7 +156,7 @@
 
 			<tr>
 				<th>글 내용2</th>
-				<td colspan="3"><textarea name="mag_content2" class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="3"><textarea name="mag_content2" class="form-control" cols="80" rows="10" required></textarea></td>
 			</tr>
 
 			<tr>
@@ -170,7 +170,7 @@
 
 			<tr>
 				<th>글 내용3</th>
-				<td colspan="3"><textarea name="mag_content3" class="form-control" cols="80" rows="10"></textarea></td>
+				<td colspan="3"><textarea name="mag_content3" class="form-control" cols="80" rows="10" required></textarea></td>
 			</tr>
 
 			<tr>

@@ -85,8 +85,7 @@
                 
                 <option value="bbs_hit_desc"<c:if test="${map.ps_order == 'bbs_hit_desc'}"> selected="selected"</c:if>>조회수 역순</option>
                 <option value="bbs_hit_asc"<c:if test="${map.ps_order == 'bbs_hit_asc'}"> selected="selected"</c:if>>조회수 순</option>
-                <option value="" disabled="disabled">---------------</option>
-				
+
 				
 				</select>
 			</div>
@@ -112,7 +111,7 @@
 					<th>No.</th>
 					<th>목록 이미지</th>
 					<th>글 제목</th>
-					<th>아이디/작성자</th>
+					<th>작성자<br>아이디</th>
 					<th>작성일자</th>
 					<th>조회수</th>
 					<th>기능</th>
@@ -153,8 +152,8 @@
 								<td ${showLink} class="eng">${dto.bbs_title}</td>
 	
 								<td ${showLink} class="py-4">
-									<p><b class="eng">${dto.bbs_writer_id}</b></p>
-									<p>${dto.bbs_writer_name}</p>
+									<p><b class="eng">${dto.bbs_writer_name}</b></p>
+									<p>${dto.bbs_writer_id}</p>
 								</td>
 	
 								<td ${showLink} class="eng">${dto.bbs_date.substring(0,10)}<br />${dto.bbs_date.substring(11)}</td>

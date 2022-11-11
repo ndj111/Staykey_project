@@ -136,9 +136,13 @@ public class SiteStayRerservOkAction implements Action {
         PrintWriter out = response.getWriter();
 
         if(res > 0) {
-            out.println("<script>alert('예약이 완료되었습니다. :-)'); location.href='mypageReservView.do?reserv_sess="+reserv_sess+"';</script>");
+            out.println("<script>var webSocket = new WebSocket(\"ws://121.164.91.191:8080/Staykey_project/webSocket\"); "
+                    + "webSocket.onopen = function(event) { webSocket.send(\"reserv|"+reserv_memname+"|"+reserv_memid+"|"+reserv_stayname+" ("+reserv_roomname+")<br />"+reserv_start.substring(0,10)+" ~ "+reserv_end.substring(0,10)+" ("+reserv_daycount+"박 "+(reserv_daycount+1)+"일)|"+reserv_sess+"\"); "
+                    + "webSocket.close(); };</script>");
+            out.println("<script>setTimeout(function(){ alert('예약이 완료되었습니다. :-)'); location.href='mypageReservView.do?reserv_sess="+reserv_sess+"'; }, 500);</script>");
+
         }else {
-            out.println("<script>alert('예약하기 중 에러가 발생했습니다.'); history.back();</script>");
+            out.println("<script>alert('스테이 예약 중 에러가 발생했습니다.'); history.back();</script>");
         }
 
         return null;
