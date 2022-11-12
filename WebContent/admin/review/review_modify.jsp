@@ -35,7 +35,7 @@
            </td>
            <th>사용 객실</th>            
            <td>
-            	<input type="text" name="review_roomname" value=" ${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+            	<input type="text" name="review_roomname" value="${dto.review_roomname}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
            </td>                  
         </tr>
         
@@ -50,7 +50,7 @@
             </td>
             <th>작성자 이름</th>
             <td>
-            	<input type="text" name="review_name" value=" ${dto.review_name}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
+            	<input type="text" name="review_name" value="${dto.review_name}" maxlength="30" class="form-control-plaintext d-inline w-30" readonly required />
             </td>
         </tr>
         

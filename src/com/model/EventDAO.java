@@ -643,8 +643,6 @@ public class EventDAO {
             closeConn(rs, pstmt, con);
         }
 
-        System.out.println(list);
-
         return list;
     }
 

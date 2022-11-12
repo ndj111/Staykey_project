@@ -403,7 +403,7 @@ public class StayDAO {
             pstmt.setInt(1, startNo);
             pstmt.setInt(2, endNo);
 
-            System.out.println("sql >> "+sql);
+            // System.out.println("sql >> "+sql);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -484,7 +484,6 @@ public class StayDAO {
         
         // ps_stay : 여행지/숙소
 		if(map.get("ps_stay") != "" && map.get("ps_stay") != null) {
-			System.out.println(map.get("ps_stay"));
 			search_sql += " and (stay_location like '%" + map.get("ps_stay") + "%' or stay_name like '%"
 					+ map.get("ps_stay") + "%' or stay_addr like '%" + map.get("ps_stay") + "%')";
 		}
@@ -515,7 +514,6 @@ public class StayDAO {
 		// ps_people : 인원
 		if((int)map.get("ps_people_adult") > 0 || (int)map.get("ps_people_kid") > 0 || (int)map.get("ps_people_baby") > 0) {
 			int ps_people_num = (int)map.get("ps_people_adult") + (int)map.get("ps_people_kid") + (int)map.get("ps_people_baby");
-			System.out.println(ps_people_num);
 			search_sql += " and "+ps_people_num+" between stay_room_people_min and stay_room_people_max";
 		}
 		
@@ -550,7 +548,7 @@ public class StayDAO {
         try {
             openConn();            
             sql = "select count(*) from "+search_sql2+" staykey_stay "+search_sql3+ search_sql;
-            System.out.println(sql);
+            // System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -1254,7 +1252,7 @@ public class StayDAO {
             openConn();
 
             sql = "select * from staykey_stay " + search_sql + " order by stay_no asc";
-            System.out.println(sql);
+            // System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -1344,7 +1342,6 @@ public class StayDAO {
             openConn();
 
             sql = "select * from staykey_stay " + search_sql + " order by stay_no asc";
-            System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -1478,7 +1475,7 @@ public class StayDAO {
             } else {
                 search_sql += " and stay_name like '%" + search_text + "%'";
             }
-            System.out.println(search_sql);
+            // System.out.println(search_sql);
         }
 
         try {
@@ -1529,7 +1526,7 @@ public class StayDAO {
         try {        	
         	openConn();
             sql = "select * from staykey_stay where "+sub_sql;
-            System.out.println(sql);
+            // System.out.println(sql);
             pstmt = con.prepareStatement(sql);
             rs = pstmt.executeQuery();
 

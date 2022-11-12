@@ -171,7 +171,7 @@ public class ReservDAO {
         }
 
         search_sql1 += search_sql2;
-        System.out.println(search_sql1);
+        // System.out.println(search_sql1);
 
 
         // 정렬용 설정
@@ -198,7 +198,7 @@ public class ReservDAO {
             order_sql = "reserv_stayname asc";
         }
 
-        System.out.println(search_sql1);
+        // System.out.println(search_sql1);
 
         try {
             openConn();

@@ -3,6 +3,8 @@ package com.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.net.URLDecoder;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -23,15 +25,52 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
 
+        String uri = request.getRequestURI();
+        String command = uri.replace(request.getContextPath()+"/", "");
+
+
+        // 콘솔 표시 정보
+        String show_page = command;
+        String show_user = null;
+        Enumeration getFormData = request.getParameterNames(); // 폼 데이터
+
+
         // 로그인 세션 가져오기
         HttpSession session = request.getSession();
         String login_name = (String)session.getAttribute("login_name");
         String login_id = (String)session.getAttribute("login_id");
 
+        if(login_id != null){
+            show_user = login_name + " ( "+login_id+" )";
+        }else{
+            show_user = "Guest";
+        }
 
-        String uri = request.getRequestURI();
-        String command = uri.replace(request.getContextPath()+"/", "");
-        System.out.println("\n *** [ " + login_name + "("+login_id+") ] 현재 페이지 =>>> " + command + "\n");
+
+        // 페이지 정리
+        if(command.contains("admin/")){
+            show_page = command.replace("admin/", "관리자 ( ") + " )";
+        }else{
+            show_page = "사이트 ( " + command + " )";
+        }
+
+
+        System.out.println("\n| ----------------------------------------------------------------------------- |");
+        System.out.println("| * 접속자 =>>> " + show_user);
+        System.out.println("| * 페이지 =>>> " + show_page);
+        if(getFormData != null && !command.equals("memberLoginOk.do") && !command.equals("memberFindIdPwOk.do") && !command.equals("memberJoinOk.do")) {
+            while(getFormData.hasMoreElements()){
+                String formKey = (String) getFormData.nextElement();
+                String[] formValues = request.getParameterValues(formKey);     
+                for(String formValue : formValues){
+                    if(formValue.length() > 0 && formValue != null){
+                        System.out.println("|          =>>> " + formKey + " : " + formValue);
+                    }
+                }   
+            }
+        }
+        System.out.println("| ----------------------------------------------------------------------------- |\n");
+
 
 
         Action action = null;

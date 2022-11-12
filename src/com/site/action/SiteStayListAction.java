@@ -118,7 +118,7 @@ public class SiteStayListAction implements Action {
         // 전체 데이터 개수 count 메서드
         int totalRecord = dao.getStaySiteTotalCount(map);
         request.setAttribute("listCount", totalRecord);
-        System.out.println("TotalCount >> " + totalRecord);
+        // System.out.println("TotalCount >> " + totalRecord);
 
         // 전체 페이지 갯수
         int allPage = (int)Math.ceil(totalRecord/(double)rowsize);
