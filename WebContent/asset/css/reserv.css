@@ -1,0 +1,382 @@
+/*************************/
+/* 예약 관련
+/************************/
+.reserv-form {
+    margin-top: -60px;
+}
+
+.reserv-form .rf-top {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+.reserv-form .rf-top .rft-name {
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -1px;
+}
+.reserv-form .rf-top .rft-date {
+    font-size: 16px;
+    color: #000;
+    padding: 0 30px 0 0;
+    background: #fff url('../images/select_arrow.png') no-repeat 97% 50%;
+    background-size: 20px 20px;
+    font-family: 'Lato';
+}
+.reserv-form .rf-top .rft-date em {
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+.reserv-form .rf-top .rft-price {
+    display: block;
+    font-family: 'Lato';
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+}
+
+
+
+.reserv-form .rf-wrap {
+    position: relative;
+    margin-top: 50px;
+    padding: 100px 20px 60px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+}
+.reserv-form .rf-wrap form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.reserv-form .rf-wrap .rfw-title {
+    font-size: 18px;
+    letter-spacing: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 50px;
+    text-align: center;
+    border-bottom: 5px solid #000;
+    font-family: 'Lato';
+}
+
+
+.reserv-form .rf-wrap .rfw-list {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody th,
+.reserv-form .rf-wrap .rfw-list tbody td {
+    border-bottom: 1px solid #e6e6e6;
+    padding: 20px 0;
+    line-height: 16px;
+    vertical-align: top;
+    text-align: left;
+}
+.reserv-form .rf-wrap .rfw-list tbody th {
+    font-size: 13px;
+    font-weight: 400;
+}
+.reserv-form .rf-wrap .rfw-list tbody td {
+    font-size: 16px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.day {
+    font-family: 'Lato';
+}
+.reserv-form .rf-wrap .rfw-list tbody td.day em {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 7px;
+    padding-left: 7px;
+    border-left: 1px solid #ddd;
+}
+.reserv-form .rf-wrap .rfw-list tbody td input[type='text'] {
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 300px;
+    margin: -10px 0;
+    border-radius: 5px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td .input-width {
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    background: #f2f2f2;
+    color: grey;
+}
+
+.reserv-form .rf-wrap .rfw-list tbody td.people {
+    display: flex;
+    flex-wrap: wrap;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.people .select {
+    display: inline-block;
+    margin: -10px 15px -10px 0;
+    font-size: 14px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.people .select select {
+    margin-left: 4px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.people .people-txt {
+    position: absolute;
+    right: 0;
+    margin-top: -8px;
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.reserv-form .rf-wrap .rfw-list tbody td.option {}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-img {
+    margin: 0 0 20px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-img .img {
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select {
+    margin-bottom: 70px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select:last-child {
+    margin-bottom: 10px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .tit {
+    font-size: 16px;
+    color: #000;
+    margin: 0 0 15px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .tit span.price {
+    float: right;
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .txt {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .sel-option {
+    margin-top: 20px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.option .option-select .sel-option label {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-right: 30px;
+}
+
+.reserv-form .rf-wrap .rfw-list tbody td textarea {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    resize: none;
+}
+.reserv-form .rf-wrap .rfw-list tbody td textarea:focus {
+    border-color: var(--color);
+}
+
+.reserv-form .rf-wrap .rfw-list tbody td.total-price {}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl {
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt {
+    padding: 7px 0;
+    clear: both;
+    float: left;
+    font-weight: 400;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt:first-child {
+    padding-top: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > .stay {
+    word-break: break-word;
+    color: #000;
+    display: inline-block;
+    margin-left: 10px;
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > .plus-option-tit {
+    float: left;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > ul.plus-option-wrap {
+    float: left;
+    margin-left: 10px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt > ul.plus-option-wrap li.plus-option {
+    word-break: break-word;
+    color: #000;
+    letter-spacing: 0;
+    margin-bottom: 3px;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd {
+    float: right;
+    text-align: right;
+    padding: 7px 0;
+    font-family: 'Lato';
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd:first-child {
+    padding-top: 0;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dt.total {
+    padding: 0;
+    margin-top: 20px;
+    color: #000;
+}
+.reserv-form .rf-wrap .rfw-list tbody td.total-price dl > dd.total {
+    color: #000;
+    font-family: 'Lato';
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+
+
+.reserv-form .rf-wrap .rfw-agree {}
+.reserv-form .rf-wrap .rfw-agree .title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #363636;
+    text-align: center;
+    margin: 80px 0 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold {}
+.reserv-form .rf-wrap .rfw-agree .fold > li {
+    padding: 17px 0 17px 20px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+    background: url('../images/select_arrow.png') no-repeat;
+    background-size: 20px 20px;
+    background-position: 98% 17px;
+    cursor: pointer;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li.agree-all {
+    height: 55px;
+    border: none;
+    background: #f5f5f5;
+    font-size: 16px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li label {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    cursor: pointer;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view {
+    position: relative;
+    font-size: 12px;
+    color: #555;
+    line-height: 2;
+    margin: 0 -20px;
+    padding: 20px 40px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: none;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view {
+    margin-top: 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view .tit {
+    display: none;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl {
+    overflow: hidden;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dt {
+    width: 20%;
+    clear: both;
+    float: left;
+    font-size: 16px;
+    color: #555;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd {
+    width: 80%;
+    float: left;
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 0;
+    table-layout: fixed;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table th,
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table tr {
+    border: 1px solid #444;
+    width: 50%;
+    line-height: 35px;
+    margin: -1px 0 0 -1px;
+    text-align: center;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd table td {
+    border-right: 1px solid #444;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd ul {
+    padding-left: 20px;
+}
+.reserv-form .rf-wrap .rfw-agree .fold > li .view .tab_view dl dd ul li {
+    list-style-type: disc;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+}
+
+
+
+.reserv-form .rf-wrap .rfw-button {
+    display: flex;
+    width: 420px;
+    padding: 40px 0 30px 0;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: space-between;
+}
+.reserv-form .rf-wrap .rfw-button button {
+    display: block;
+    flex: 1 1;
+    height: 55px;
+    font-size: 16px;
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+}
+.reserv-form .rf-wrap .rfw-button button:hover {
+    opacity: 0.8;
+}
+
+
+
+
+

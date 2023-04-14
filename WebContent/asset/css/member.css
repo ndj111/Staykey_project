@@ -1,0 +1,173 @@
+/*************************/
+/* 회원 관련
+/************************/
+.member-form {}
+.member-form .mf-wrap {
+    width: 360px;
+    margin: 0 auto;
+    border-top: 1px solid #000;
+}
+
+.member-form .mf-form {
+    margin: 30px 0 10px 0;
+}
+.member-form .mf-form input {
+    width: 100%;
+    height: 46px;
+    margin-top: 13px;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    color: 000;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.member-form .mf-form input:focus {
+    border-color: var(--color);
+}
+.member-form .mf-form input::placeholder {
+    font-size: 15px;
+    font-weight: 300;
+    color: #aaa;
+    letter-spacing: -1px;
+}
+.member-form .mf-form input[type="number"]::-webkit-outer-spin-button,
+.member-form .mf-form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.member-form .mf-msg {
+    text-align: center;
+    color: var(--color);
+    display: none;
+}
+
+.member-form .mf-btn {
+    margin-top: 20px;
+}
+.member-form .mf-btn button,
+.member-form .mf-btn a {
+    display: block;
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.member-form .mf-btn button {
+    color: #fff;
+    background: #000;
+    border: 1px solid #000;
+    letter-spacing: 4px;
+}
+.member-form .mf-btn button:hover {
+    color: #fff;
+    background: #555;
+}
+.member-form .mf-btn a {
+    margin-top: 10px;
+    padding-top: 12px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #4d4d4d;
+}
+.member-form .mf-btn a:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+.member-form .mf-find {
+    margin-top: 10px;
+    text-align: right;
+}
+.member-form .mf-find a {
+    font-size: 14px;
+    color: #777;
+}
+.member-form .mf-find a:hover {
+    color: var(--color);
+}
+
+
+
+/* 아이디비번찾기 */
+.member-form.find .mf-select {
+    margin-top: 30px;
+    text-align: center;
+}
+.member-form.find .mf-select label {
+    margin: 0 15px;
+}
+.member-form.find .mf-select label:hover {color: var(--color);
+}
+
+
+
+/* 아이디비번찾기 결과 */
+.member-form.result .mf-result {
+    padding: 70px 0 50px 0;
+    text-align: center;
+}
+.member-form.result .mf-result strong {
+    font-family: 'Lato';
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--color);
+    letter-spacing: 1px;
+    line-height: 32px;
+}
+
+
+
+/* 회원가입 폼 */
+.member-form.join .mf-form {
+    margin-top: 0;
+}
+.member-form.join .mf-form label {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #000;
+}
+.member-form.join .mf-form label:hover {
+    cursor: default;
+}
+.member-form.join .mf-form input {
+    margin-top: 2px;
+}
+.member-form.join .mf-form p.error {
+    color: var(--color);
+    margin: 8px 0;
+    display: none;
+}
+.member-form.join .mf-form .checked {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.member-form.join .mf-form .checked li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #bbb;
+}
+.member-form.join .mf-form .checked li:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    margin-right: 3px;
+}
+.member-form.join .mf-form .checked li.on {
+    color: var(--color);
+}
+
+.member-form.join .mf-btn {
+    margin-top: 40px;
+}
+
+
+
+
+

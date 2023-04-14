@@ -1,0 +1,1747 @@
+/*************************/
+/* 숙소 관련
+/************************/
+
+/* 숙소 검색 */
+.stay-search {
+    position: relative;
+    border-top: 3px solid #000;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 9;
+}
+.stay-search .row {
+    position: relative;
+    height: 60px;
+    margin-left: 0;
+    margin-right: 0;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    justify-content: center;
+}
+.stay-search .row label {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 36px;
+}
+.stay-search .row .ss-input {
+    border: 1px solid #e4e4e4;
+    width: 200px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+.stay-search .row .ss-input:focus {
+    border-color: var(--color);
+}
+.stay-search .row .ss-button {
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    background: #fff url('../images/select_arrow.png') no-repeat 95% 50%;
+    background-size: 20px 20px;
+    width: 200px;
+    height: 36px;
+    padding: 0 23px 0 12px;
+    margin-right: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stay-search .row .ss-reset {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding-top: 7px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #555;
+}
+.stay-search .row .ss-reset:hover {
+    color: var(--color);
+    border-color: var(--color);
+}
+
+.stay-search button[type='button']:hover {
+    color: var(--color);
+}
+
+.stay-search button[type='submit'] {
+    background: #000;
+    font-size: 14px;
+    color: #fff;
+    line-height: 36px;
+    border-radius: 100px;
+    font-family: 'Lato';
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-align: center;
+    padding: 0 25px;
+    margin-top: 36px;
+}
+.stay-search button[type='submit']:hover {
+    background: var(--color);
+}
+.stay-search button[type='submit'] i {
+    font-size: 10px;
+}
+
+
+
+.stay-search .layer-select {
+    position: absolute;
+    top: 25px;
+    min-width: 200px;
+    padding: 30px;
+    border-radius: 5px;
+    z-index: 10;
+    border: 1px solid #e4e4e4;
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 10%);
+}
+.stay-search .layer-select:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: calc(50% - 8px);
+    width: 16px;
+    height: 10px;
+    background: url('../images/menu_arrow.png') no-repeat 50%;
+    background-size: cover;
+}
+.stay-search .layer-select.open {
+    top: 55px;
+    visibility: visible;
+    opacity: 1;
+}
+.stay-search .layer-select .btn-close {
+    position: absolute;
+    top: 35px;
+    right: 25px;
+    display: block;
+    text-indent: -99999px;
+}
+.stay-search .layer-select .tit {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+}
+.stay-search .layer-select dl {
+    margin-top: 10px;
+    overflow: hidden;
+}
+.stay-search .layer-select dt {
+    float: left;
+    margin: 12px 0 0 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 31px;
+    line-height: 1;
+    text-align: left;
+}
+.stay-search .layer-select dt span {
+    display: inline-block;
+}
+.stay-search .layer-select dt small {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 300;
+    color: #999;
+}
+.stay-search .layer-select dd {
+    margin: 12px 0 0 70px;
+}
+.stay-search .layer-select .number-count {
+    display: flex;
+    position: relative;
+    padding: 0 31px;
+    text-align: center;
+}
+.stay-search .layer-select .number-count .btn-minus,
+.stay-search .layer-select .number-count .btn-plus {
+    position: absolute;
+    width: 31px;
+    height: 32px;
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    background: #fff;
+}
+.stay-search .layer-select .number-count .btn-minus:hover,
+.stay-search .layer-select .number-count .btn-plus:hover {
+    color: var(--color);
+}
+.stay-search .layer-select .number-count .btn-minus {
+    left: 0;
+}
+.stay-search .layer-select .number-count .btn-plus {
+    right: 0;
+}
+.stay-search .layer-select .number-count .input-num {
+    display: flex;
+    width: 55px;
+    height: 32px;
+    vertical-align: middle;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 14px;
+}
+.stay-search .layer-select input[type="number"]::-webkit-outer-spin-button,
+.stay-search .layer-select input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.stay-search .layer-select .number-count .input-num input[type='number'] {
+    display: inline-block;
+    width: 37px;
+    height: 31px;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: right;
+    border: 0;
+    background: transparent;
+    outline: none;
+}
+.stay-search .layer-select .number-count .input-num .person-count {
+    display: inline-block;
+    line-height: 32px;
+}
+.stay-search .layer-select .btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.stay-search .layer-select .btn-wrapper button {
+    display: block;
+    width: 140px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    border-radius: 100px;
+}
+.stay-search .layer-select .btn-wrapper button:hover {
+    opacity: 0.8;
+}
+
+
+.stay-search .layer-select .price-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+.stay-search .layer-select .price-input .input {
+    position: relative;
+    text-align: left;
+}
+.stay-search .layer-select .price-input .input small {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 8px;
+}
+.stay-search .layer-select .price-input .input span {
+    display: inline-block;
+    border: 1px solid #e4e4e4;
+    height: 32px;
+    padding: 0 8px 0 0;
+}
+.stay-search .layer-select .price-input .input span input[type='text'] {
+    width: 85px;
+    height: 32px;
+    text-align: right;
+    font-size: 14px;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    border: 0;
+    background: transparent;
+    outline: none;
+}
+.stay-search .layer-select .price-input .divider {
+    display: inline-block;
+    line-height: 32px;
+    border: none;
+    padding: 30px 5px 5px;
+}
+
+.stay-search #selectType {
+    margin-left: 78px;
+}
+.stay-search .layer-select .check-list {
+    width: 140px;
+    padding-top: 15px;
+}
+.stay-search .layer-select .check-list li {
+    width: 100%;
+    text-align: left;
+    margin-top: 15px;
+    padding-left: 15px;
+}
+.stay-search .layer-select .check-list li > label {
+    width: 100%;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    line-height: 1;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.stay-search .layer-select .check-list li > label > span {
+    display: inline-block;
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    z-index: 3;
+}
+
+
+
+
+/* 숙소 정렬 */
+.stay-order {
+    position: relative;
+    margin-top: 100px;
+    border-bottom: 2px solid #000;
+    font-size: 14px;
+    line-height: 2px;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    z-index: 2;
+}
+.stay-order li {
+    margin-left: 5px;
+}
+.stay-order li a {
+    display: block;
+    padding: 10px;
+    color: #888;
+}
+.stay-order li a:before {
+    content: "•";
+    padding-right: 4px;
+}
+.stay-order li a:hover {
+    color: var(--color);
+}
+.stay-order li a.now {
+    color: #000;
+}
+
+
+
+
+/* 숙소 목록 */
+.stay-list {
+    position: relative;
+    min-width: 1150px;
+    margin: 0 auto;
+}
+.stay-list .sl-wrap {
+    clear: both;
+    position: relative;
+    min-width: 1150px;
+    padding-top: 75px;
+    margin: -70px 0 0 -90px;
+    font-size: 0;
+}
+.stay-list .sl-wrap li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 50%;
+    font-size: 14px;
+    padding: 70px 0 50px 90px;
+}
+.stay-list .sl-wrap li a {
+    display: block;
+    width: 100%;
+}
+
+.stay-list .sl-wrap li .slw-name {
+    position: absolute;
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 400;
+    color: #181818;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 5;
+}
+.stay-list .sl-wrap li .slw-name span {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3.6px;
+    font-size: 12px;
+    text-indent: 2px;
+}
+.stay-list .sl-wrap li .clear {
+    height: 115px;
+}
+
+.stay-list .sl-wrap li .slw-info {
+    float: left;
+    position: relative;
+    width: 30%;
+    margin-top: 30px;
+    line-height: 2;
+    font-size: 14px;
+    color: #333;
+}
+.stay-list .sl-wrap li a:hover .slw-info {
+    color: #000;
+}
+.stay-list .sl-wrap li .slw-info p.address {}
+.stay-list .sl-wrap li .slw-info p.people {}
+.stay-list .sl-wrap li .slw-info p.price {
+    font-family: 'Lato';
+    letter-spacing: 0;
+}
+.stay-list .sl-wrap li .slw-info p.reserv {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0a0a0a;
+    line-height: 30px;
+    letter-spacing: 0;
+    border-bottom: 1px solid #000;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out
+}
+.stay-list .sl-wrap li a:hover .slw-info p.reserv {
+    color: var(--color);
+    border-bottom-color: var(--color);
+}
+
+.stay-list .sl-wrap li .slw-photo {
+    clear: both;
+    position: absolute;
+    width: 59%;
+    height: 238px;
+    bottom: 48px;
+    right: 0;
+    padding: 70px 0 0;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+    z-index: 1;
+}
+.stay-list .sl-wrap li a:hover .slw-photo {
+    border-radius: 10px;
+    opacity: 0.9;
+}
+.stay-list .sl-wrap li .slw-wish {
+    position: absolute;
+    right: 0;
+    margin-top: 232px;
+    padding: 7px 12px;
+    z-index: 2;
+    color: #fff;
+    font-size: 24px;
+    opacity: 0.8;
+}
+.stay-list .sl-wrap li .slw-wish.on {
+    opacity: 1;
+}
+
+.stay-list .sl-wrap li.nodata {
+    width: 100%;
+    text-align: center;
+    padding: 100px 0 100px 87px;
+}
+
+
+
+
+
+
+/************************/
+/* 숙소 보기 */
+.stay-view {}
+
+.stay-view h2.sv-name {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+    padding: 0 var(--xpadding);
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+
+.stay-view .sv-top {
+    position: relative;
+    width: 100%;
+}
+.stay-view .sv-top .svt-info {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 1280px;
+    height: 80px;
+    margin-left: -640px;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+.stay-view .sv-top .svt-info .name {
+    display: inline-block;
+    width: 23%;
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.stay-view .sv-top .svt-info .name small {
+    display: block;
+    padding-bottom: 4px;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 100;
+    color: #a5a5a5;
+    letter-spacing: 1.5px;
+}
+.stay-view .sv-top .svt-info .name:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 23%;
+    width: 1px;
+    height: 80px;
+    background: hsla(0,0%,100%,0.2);
+}
+.stay-view .sv-top .svt-info .desc {
+    display: inline-block;
+    width: 50%;
+    padding: 0 30px 5px 30px;
+    font-size: 26px;
+    font-weight: 100;
+    color: #fff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+.stay-view .sv-top .svt-info .wish {
+    display: inline-block;
+    width: 11%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 200;
+    color: #fff;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.stay-view .sv-top .svt-info .wish:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    margin-left: -30px;
+    width: 1px;
+    height: 80px;
+    background: hsla(0,0%,100%,0.2);
+}
+.stay-view .sv-top .svt-info .wish:hover {
+    background: rgba(255,255,255,0.1);
+}
+.stay-view .sv-top .svt-info .wish.on i:before {
+    content: "\f004";
+}
+
+
+.stay-view .sv-top .svt-photo {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 1;
+}
+.stay-view .sv-top .svt-photo .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.stay-view .sv-top .svt-photo .swiper-slide {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+.stay-view .sv-top .svt-photo .swiper-slide .img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.stay-view .sv-top .svt-photo 
+.swiper-button-prev,
+.stay-view .sv-top .svt-photo 
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 50px;
+    color: #fff;
+    opacity: 0.5;
+    background: #000;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stay-view .sv-top .svt-photo 
+.swiper-button-prev:hover,
+.stay-view .sv-top .svt-photo 
+.swiper-button-next:hover {
+    opacity: 1;
+}
+.stay-view .sv-top .svt-photo 
+.swiper-button-prev {
+    left: 0;
+    padding-right: 5px;
+}
+.stay-view .sv-top .svt-photo 
+.swiper-button-next {
+    right: 0;
+    padding-left: 5px;
+}
+
+
+.stay-view .sv-room {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    margin: 140px auto 0;
+}
+.stay-view .sv-room:before {
+    content: "";
+    width: 50%;
+    height: 670px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f5f5f5;
+    z-index: -1;
+}
+
+.stay-view .sv-room .svr-info {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 120px;
+}
+.stay-view .sv-room .svr-info .tit {
+    margin-top: 35px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #000;
+}
+.stay-view .sv-room .svr-info .tit:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #000;
+    margin-top: 30px;
+}
+.stay-view .sv-room .svr-info .txt {
+    width: 32%;
+    margin-top: 35px;
+    padding-right: 60px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #424242;
+    line-height: 1.8;
+}
+.stay-view .sv-room .svr-info .swiper-button {
+    display: block;
+    width: 160px;
+    padding-top: 120px;
+    z-index: 2;
+}
+.stay-view .sv-room .svr-info .swiper-button .swiper-button-prev,
+.stay-view .sv-room .svr-info .swiper-button .swiper-button-next {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    margin-top: 0;
+    padding-bottom: 7px;
+    background: #000;
+    overflow: hidden;
+    border-radius: 50%;
+    font-size: 36px;
+    color: #fff;
+}
+.stay-view .sv-room .svr-info .swiper-button .swiper-button-prev:hover,
+.stay-view .sv-room .svr-info .swiper-button .swiper-button-next:hover {
+    opacity: 0.8;
+}
+.stay-view .sv-room .svr-info .swiper-button 
+.swiper-button-prev {
+    margin-right: 10px;
+}
+
+
+.stay-view .sv-room .svr-list {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    right: 0;
+    height: 100%;
+    margin-left: -230px;
+    overflow: hidden;
+}
+.stay-view .sv-room .svr-list ul {
+    position: relative;
+    width: 100%;
+}
+.stay-view .sv-room .svr-list li {
+    position: relative;
+    width: 460px !important;
+    height: 460px;
+    background: #ddd;
+    margin: 0 0 100px 0;
+    box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 20%);
+    flex-shrink: 0;
+}
+.stay-view .sv-room .svr-list.nomore li {
+    margin-right: 50px;
+}
+.stay-view .sv-room .svr-list li a {
+    display: block;
+    outline: none;
+    width: 460px;
+    height: 460px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
+}
+.stay-view .sv-room .svr-list li .room-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 140px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+}
+.stay-view .sv-room .svr-list li:hover .room-info {
+    background: rgba(0,0,0,1);
+
+    -webkit-transition: all 0.2s ease-out 0s;
+    -o-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+}
+.stay-view .sv-room .svr-list li .room-info .name {
+    position: absolute;
+    bottom: 62px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    width: 290px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.stay-view .sv-room .svr-list li .room-info .name small {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: hsla(0,0%,100%,.5);
+    letter-spacing: 1.5px;
+}
+.stay-view .sv-room .svr-list li .room-info .price {
+    position: absolute;
+    bottom: 90px;
+    right: 30px;
+    font-size: 21px;
+    font-family: 'Lato';
+}
+.stay-view .sv-room .svr-list li .room-info .etc {
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.stay-view .sv-room .svr-list li .room-info .etc span:before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+.stay-view .sv-room .svr-list li .room-info .reserv {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    display: block;
+    font-size: 13px;
+    line-height: 25px;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid #fff;
+}
+.stay-view .sv-room .svr-list li.nodata {
+    padding-top: 220px;
+    text-align: center;
+}
+
+
+
+.stay-view .sv-detail {}
+.stay-view .sv-detail .fdetail_text {
+    margin-top: 120px;
+    text-align: center;
+}
+.stay-view .sv-detail .fdetail_text .fdetail_title {
+    font-size: 25px;
+    color: #222;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+.stay-view .sv-detail .fdetail_text .fdetail_title:after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: #000;
+    margin: 25px auto 0;
+}
+.stay-view .sv-detail .fdetail_text .fdetail_title small {
+    display: block;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 7px;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+.stay-view .sv-detail .fdetail_text .txt1,
+.stay-view .sv-detail .fdetail_text .txt2 {
+    width: 780px;
+    font-size: 16px;
+    word-break: keep-all;
+}
+.stay-view .sv-detail .fdetail_text .txt1 {
+    line-height: 2.2;
+    margin: 20px auto 0;
+}
+.stay-view .sv-detail .fdetail_text .txt2 {
+    line-height: 2;
+    margin: 50px auto 0;
+}
+
+
+.stay-view .sv-detail .fdetail_special {
+    position: relative;
+    width: 100%;
+    margin-top: 70px;
+    text-align: center;
+    padding: 120px 0;
+}
+.stay-view .sv-detail .fdetail_special:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+}
+.stay-view .sv-detail .fdetail_special .special_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1330px;
+    padding: 0 20px;
+}
+.stay-view .sv-detail .fdetail_special .special_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.stay-view .sv-detail .fdetail_special .special_tit {
+    font-size: 30px;
+    color: #fff;
+}
+.stay-view .sv-detail .fdetail_special .special_tit small {
+    display: block;
+    margin: 0 auto 20px;
+    font-size: 21px;
+    letter-spacing: 21px;
+    padding: 0 0 0 21px;
+    color: #fff;
+}
+.stay-view .sv-detail .fdetail_special .special_list {
+    margin: 75px 0 0;
+    min-width: 1100px;
+    display: flex;
+    justify-content: center;
+}
+.stay-view .sv-detail .fdetail_special .special_list:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.fdetail_special .special_list li {
+    position: relative;
+    float: left;
+    background: rgba(0,0,0,.7);
+    width: 343px;
+    padding: 45px 33px;
+    margin-left: 35px;
+}
+.stay-view .sv-detail .fdetail_special .special_list li:first-of-type {
+    margin: 0;
+}
+.stay-view .sv-detail .fdetail_special .special_list li i {
+    font-style: normal;
+    font-weight: 400;
+}
+.stay-view .sv-detail .fdetail_special .special_list li i img {
+    width: 50px;
+}
+.stay-view .sv-detail .fdetail_special .special_list li .tit {
+    font-size: 20px;
+    color: #fff;
+    margin: 20px 0;
+}
+.stay-view .sv-detail .fdetail_special .special_list li .desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #b3b3b3;
+}
+
+
+.stay-view .sv-detail .fdetail_map {
+    position: relative;
+    width: 100%;
+    margin: 120px 0 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.stay-view .sv-detail .fdetail_map iframe {
+    width: 100% !important;
+    height: 550px !important;
+}
+.stay-view .sv-detail .fdetail_map .map_tit {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 305px;
+    padding: 22px 30px 30px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px -1px;
+    z-index: 1;
+}
+.stay-view .sv-detail .fdetail_map .map_tit .title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.stay-view .sv-detail .fdetail_map .map_tit .desc {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+
+
+.stay-view .sv-review {
+    margin: 100px auto 0 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.stay-view .sv-review .svr-graph {
+    position: relative;
+    width: 280px;
+    max-width: 280px;
+    padding: 40px 0 15px 0;
+    background: #3d9aed;
+    text-align: center;
+}
+.stay-view .sv-review .svr-graph .stay {
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+.stay-view .sv-review .svr-graph .graph {
+    position: relative;
+    min-height: 300px;
+    margin: 0 auto;
+    padding: 40px 0 0;
+    background: url('../images/review_graph_bg.png') no-repeat 21px 0;
+}
+.stay-view .sv-review .svr-graph .graph .graph-canvas {
+    width: 170px;
+    margin: 0 auto;
+    opacity: 0.7;
+}
+.stay-view .sv-review .svr-graph .graph .graph-rate {
+    position: absolute;
+    top: 115px;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.15;
+    color: #ffc18c;
+    text-align: center;
+    text-shadow: 0 0 2px rgb(0 0 0 / 50%);
+    z-index: 2;
+}
+.stay-view .sv-review .svr-graph .graph .graph-rate strong {
+    display: block;
+    font-family: 'Lato';
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.stay-view .sv-review .svr-list {
+    width: calc(100% - 330px);
+    align-self: flex-start;
+}
+.stay-view .sv-review .svr-list .title {
+    margin-bottom: 10px;
+    font-family: 'Lato';
+    font-size: 22px;
+    color: #000;
+}
+.stay-view .sv-review .svr-list table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid #000;
+}
+.stay-view .sv-review .svr-list table td {
+    margin: 0;
+    padding: 18px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #666;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd !important;
+}
+.stay-view .sv-review .svr-list table tr.rlist:hover td {
+    cursor: pointer;
+    background: #f7f7f7;
+}
+.stay-view .sv-review .svr-list table td.point {
+    font-family: 'Lato';
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+}
+.stay-view .sv-review .svr-list table td.photo {}
+.stay-view .sv-review .svr-list table td.photo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+}
+.stay-view .sv-review .svr-list table td > p {
+    font-size: 15px;
+}
+.stay-view .sv-review .svr-list table td > p > span {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 10px;
+}
+.stay-view .sv-review .svr-list table td p.eng {
+    font-family: 'Lato';
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.stay-view .sv-review .svr-list table td.arrow {
+    font-size: 24px;
+    color: #ccc;
+}
+.stay-view .sv-review .svr-list table tr:hover td.arrow {
+    color: #333;
+}
+
+.stay-view .sv-review .svr-list table tr.rcont {
+    display: none;
+}
+.stay-view .sv-review .svr-list table tr.rcont td {
+    line-height: 1.7;
+    padding-bottom: 35px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt {
+    display: inline-block;
+    margin: 7px 0;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dt:before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd {
+    display: inline-block;
+    margin: 7px 20px 7px 10px;
+    font-size: 14px;
+}
+.stay-view .sv-review .svr-list table tr.rcont td dl > dd > b {
+    font-family: 'Lato';
+    font-size: 17px;
+}
+.stay-view .sv-review .svr-list table tr.rcont img {
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+.stay-view .sv-caution {
+    padding: 100px 0;
+    margin: 100px 0 -110px;
+    color: #fff;
+    background: #000;
+}
+.stay-view .sv-caution .faq_tit {}
+.stay-view .sv-caution .faq_tit .left {
+    clear: both;
+    float: left;
+    width: 17%;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.stay-view .sv-caution .faq_tit .right {
+    float: right;
+    width: 83%;
+    font-size: 16px;
+}
+
+.stay-view .sv-caution .faq_cont {
+    padding-top: 60px;
+}
+.stay-view .sv-caution .faq_cont:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.stay-view .sv-caution .faq_cont .tab_btn {
+    clear: both;
+    float: left;
+    width: 17%;
+    color: #666;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li {
+    margin-bottom: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    padding-right: 6px;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li:hover {
+    color: #999;
+}
+.stay-view .sv-caution .faq_cont .tab_btn li.active {
+    color: #fff;
+}
+
+.stay-view .sv-caution .faq_cont .tab_cont {
+    float: right;
+    width: 83%;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view,
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view.hide {
+    display: none;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view.active {
+    display: block;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view .tit {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl {
+    overflow: hidden;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dt {
+    width: 10%;
+    clear: both;
+    float: left;
+    font-size: 16px;
+    color: #ccc;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd {
+    width: 90%;
+    float: left;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+    padding-bottom: 30px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 0;
+    table-layout: fixed;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table th,
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table tr {
+    border: 1px solid #444;
+    width: 50%;
+    line-height: 35px;
+    margin: -1px 0 0 -1px;
+    text-align: center;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd table td {
+    border-right: 1px solid #444;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd ul {
+    padding-left: 20px;
+}
+.stay-view .sv-caution .faq_cont .tab_cont .tab_view dl dd ul li {
+    list-style-type: disc;
+    font-size: 14px;
+    color: #888;
+    line-height: 28px;
+}
+
+
+
+
+
+
+
+/************************/
+/* Room 보기 */
+.stay-room {
+    margin-top: -60px;
+}
+
+.stay-room .sr-top {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+.stay-room .sr-top .srt-name {
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -1px;
+}
+.stay-room .sr-top .srt-date {
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+    padding: 0 30px 0 0;
+    background: #fff url('../images/select_arrow.png') no-repeat 97% 50%;
+    background-size: 20px 20px;
+    font-family: 'Lato';
+}
+.stay-room .sr-top .srt-date em {
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+.stay-room .sr-top .reserv-go {
+    display: inline-block;
+    width: 240px;
+    height: 40px;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    background: #000;
+    border: 1px solid #000;
+}
+.stay-room .sr-top .reserv-go:hover {
+    opacity: 0.8;
+}
+
+
+
+.stay-room .sr-info {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 540px;
+}
+.stay-room .sr-info .sri-left {
+    width: 23%;
+    box-sizing: border-box;
+}
+.stay-room .sr-info .sri-left .tit {
+    font-size: 12px;
+    letter-spacing: 3.5px;
+}
+.stay-room .sr-info .sri-left .name {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+.stay-room .sr-info .sri-left .price {
+    font-family: 'Lato';
+    font-size: 18px;
+    letter-spacing: 0;
+    margin-top: 20px;
+}
+.stay-room .sr-info .sri-left .txt {
+    margin-top: 30px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+}
+.stay-room .sr-info .sri-left .etc {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 23%;
+    margin-top: 30px;
+}
+.stay-room .sr-info .sri-left .tag {
+    position: relative;
+    width: 100%;
+    margin-bottom: 7px;
+    margin-left: -3px;
+}
+.stay-room .sr-info .sri-left .tag span {
+    display: inline-block;
+    line-height: 27px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 13px;
+    color: #333;
+    margin: 0 0 5px -1px;
+}
+.stay-room .sr-info .sri-left .option {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #333;
+}
+
+.stay-room .sr-info .sri-right {
+    position: relative;
+    width: 74.4%;
+    height: 540px;
+    overflow: hidden;
+}
+.stay-room .sr-info .sri-right .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1;
+    box-sizing: content-box;
+}
+.stay-room .sr-info .sri-right li.swiper-slide {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    background: #f3f3f3;
+}
+.stay-room .sr-info .sri-right li.swiper-slide .img {
+    width: 100%;
+    height: 540px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev,
+.stay-room .sr-info .sri-right .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.5;
+    background: #000;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev:hover,
+.stay-room .sr-info .sri-right .swiper-button-next:hover {
+    opacity: 1;
+}
+.stay-room .sr-info .sri-right .swiper-button-prev {
+    left: 0;
+}
+.stay-room .sr-info .sri-right .swiper-button-next {
+    right: 0;
+}
+
+
+
+
+.stay-room .sr-service {
+    margin-top: 50px;
+    border-top: 1px solid #ddd;
+}
+.stay-room .sr-service .row {
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+.stay-room .sr-service .srs-tit {
+    width: 25%;
+    padding-left: 15px;
+    font-size: 12px;
+    letter-spacing: 3.6px;
+    box-sizing: border-box;
+}
+.stay-room .sr-service .srs-list {
+    width: 75%;
+    font-size: 0;
+    padding: 20px 0 40px;
+}
+.stay-room .sr-service .srs-list li {
+    display: inline-block;
+    width: 96px;
+    word-break: keep-all;
+    text-align: center;
+    max-height: 85px;
+    padding-bottom: 3px;
+    font-size: 13px;
+    color: #777;
+    margin: 20px 10px 0 0;
+    vertical-align: top;
+    line-height: 13px;
+    overflow: hidden;
+}
+.stay-room .sr-service .srs-list li i {
+    display: block;
+    width: 50px;
+    height: 33px;
+    margin: 0 auto 13px;
+    background-image: url('../images/sprite.png');
+}
+.stay-room .sr-service .srs-list li i[title*="야외가구"] {
+    background-position: -150px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="천창"] {
+    background-position: 0 -62px;
+}
+.stay-room .sr-service .srs-list li i[title*="수영장"] {
+    background-position: -150px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="갤러리"] {
+    background-position: -100px -95px;
+}
+.stay-room .sr-service .srs-list li i[title*="실내 스파"] {
+    background-position: -50px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="월풀 스파"] {
+    background-position: -100px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="오픈 배스"] {
+    background-position: -212px -33px;
+}
+.stay-room .sr-service .srs-list li i[title*="썬베드"] {
+    background-position: -100px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="정원"] {
+    background-position: -50px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="개별 BBQ 데크"] {
+    background-position: 0 -95px;
+}
+.stay-room .sr-service .srs-list li i[title*="그네"] {
+    background-position: 0 -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="테라스"] {
+    background-position: 0 -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="독립 키친"] {
+    background-position: -112px 0;
+}
+.stay-room .sr-service .srs-list li i[title*="독립 화장실"] {
+    background-position: -50px -62px;
+}
+.stay-room .sr-service .srs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.stay-room .sr-service .srs-list li i[title*="산책로"] {
+    background-position: -212px -132px;
+}
+.stay-room .sr-service .srs-list li i[title*="웰컴티"] {
+    background-position: -50px -227px;
+}
+.stay-room .sr-service .srs-list li i[title*="조식"] {
+    background-position: -100px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="주차"] {
+    background-position: -150px -161px;
+}
+.stay-room .sr-service .srs-list li i[title*="빔프로젝트"],
+.stay-room .sr-service .srs-list li i[title*="빔 프로젝터"] {
+    background-position: -62px 0;
+}
+.stay-room .sr-service .srs-list li i[title*="샤워실"] {
+    background-position: -200px -194px;
+}
+.stay-room .sr-service .srs-list li i[title*="공용 키친"] {
+    background-position: -100px -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="공용 화장실"] {
+    background-position: -50px -128px;
+}
+.stay-room .sr-service .srs-list li i[title*="자전거 렌탈"] {
+    background-position: -162px -99px;
+}
+.stay-room .sr-service .srs-list li i[title*="락커"] {
+    background-position: -212px -99px;
+}
+.stay-room .sr-service .srs-list li i[title*="빅테이블"] {
+    background-position: 0 -29px;
+}
+.stay-room .sr-service .srs-list li i[title*="캠핑테이블체어"] {
+    background-position: -212px 0;
+}
+
+
+
+.stay-room .sr-reserv {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 30px 0;
+    width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+.stay-room .sr-reserv .reserv-go {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    background: #000;
+    border: 1px solid #000;
+}
+.stay-room .sr-reserv .reserv-go:hover {
+    opacity: 0.8;
+}
+
+
+
+.stay-room .sr-other {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 30px auto 0 auto;
+}
+.stay-room .sr-other .sro-title {
+    padding: 0 0 45px;
+    font-size: 12px;
+    color: #181818;
+    font-weight: 700;
+    letter-spacing: 11px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.stay-room .sr-other .sro-list {
+    position: relative;
+    display: block;
+    overflow: visible;
+    box-sizing: border-box;
+    margin: 0 0 -60px 20px;
+    padding: 0;
+    z-index: 1;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev,
+.stay-room .sr-other .sro-list .swiper-button-next {
+    position: absolute;
+    left: auto;
+    top: 0;
+    margin-top: -58px;
+    background: none;
+    font-size: 18px;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev:hover,
+.stay-room .sr-other .sro-list .swiper-button-next:hover {
+    color: #888;
+}
+.stay-room .sr-other .sro-list .swiper-button-prev {
+    right: 38px;
+    margin-left: 16px;
+}
+.stay-room .sr-other .sro-list .swiper-button-next {
+    right: 15px;
+    margin-left: 38px;
+}
+.stay-room .sr-other .sro-list .swiper-wrapper {}
+.stay-room .sr-other .sro-list .swiper-slide {
+    position: relative;
+    width: 376px !important;
+    padding: 0 0 60px 0;
+    text-align: center;
+}
+.stay-room .sr-other .sro-list .nomove {
+    margin-left: 20px;
+    justify-content: center;
+}
+.stay-room .sr-other .sro-list .nomove .swiper-slide {
+    margin-right: 80px;
+}
+.stay-room .sr-other .sro-list .swiper-slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .img {
+    width: 100%;
+    height: 250px;
+     background-repeat: no-repeat;
+     background-position: center center;
+     background-size: cover;
+     box-sizing: border-box;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .img.none {
+    background: #f5f5f5;
+    text-align: center;
+    padding-top: 120px;
+    color: #666;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .name {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #181818;
+    font-weight: 500;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .price {
+    margin-top: 15px;
+    font-family: 'Lato';
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 0;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .people {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+.stay-room .sr-other .sro-list .swiper-slide a .bed {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+
+
+
+

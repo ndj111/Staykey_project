@@ -1,0 +1,351 @@
+/*************************/
+/* 매거진 관련
+/************************/
+
+/* 매거진 목록 */
+.magazine-list {
+    text-align: center;
+}
+.magazine-list .ml-list {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    margin: -32px -15px -15px;
+}
+.magazine-list .ml-list li {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    height: 103%;
+    margin: 0;
+    vertical-align: top;
+    border: 15px solid transparent;
+}
+.magazine-list .ml-list li a {
+    display: block;
+    width: 100%;
+}
+.magazine-list .ml-list li a .mll-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 300px;
+    margin: -150px 0 0 -160px;
+    text-align: center;
+    z-index: 2;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+}
+.magazine-list .ml-list li a:hover .mll-info {
+    background: #fff;
+}
+.magazine-list .ml-list li a .mll-info p.name {
+    width: 100%;
+    font-size: 21px;
+    color: #333;
+    line-height: 1.3;
+    padding: 0 40px;
+    word-break: keep-all;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+}
+.magazine-list .ml-list li a:hover .mll-info p.name {
+    color: var(--color);
+}
+.magazine-list .ml-list li a .mll-info p.stay {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+.magazine-list .ml-list li a .mll-info p.more {
+    margin-top: 15px;
+    display: inline-block;
+    font-family: 'Lato';
+    font-size: 13px;
+    color: #000;
+    line-height: 30px;
+    letter-spacing: 0;
+    border-bottom: 1px solid #000;
+}
+
+.magazine-list .ml-list li a .mll-photo {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-top: 100%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+}
+.magazine-list .ml-list li a:hover .mll-photo {
+    opacity: 0.9;
+}
+
+.magazine-list .ml-paging {}
+.magazine-list .ml-paging .page-paging:before {
+    height: 0;
+}
+
+.magazine-list .ml-list li.nodata {
+    position: relative;
+    width: 100%;
+    height: auto;
+    font-size: 14px;
+    color: #191919;
+    line-height: 1;
+    text-align: center;
+    padding: 100px 0;
+    border: 0;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+}
+
+
+
+
+
+/* 매거진 보기 */
+.magazine-view {}
+.magazine-view .container {
+    padding: 0 20px;
+}
+
+.magazine-view .mv-title {
+    height: 187px;
+    text-align: center;
+}
+.magazine-view .mv-title h3 {
+    display: flex;
+    height: 170px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+}
+
+
+.magazine-view .mv-top {
+    display: flex;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-weight: 400;
+    text-shadow: 1px 0px 3px rgba(0, 0, 0, 0.9);
+}
+.magazine-view .mv-top p.title {
+    font-size: 32px;
+}
+.magazine-view .mv-top p.stay {
+    margin-top: 30px;
+    font-size: 20px;
+}
+.magazine-view .mv-top p.stay:before {
+    content: "";
+    position: absolute;
+    margin: 16px 0 0 -190px;
+    width: 150px;
+    height: 1px;
+    background: #fff;
+}
+.magazine-view .mv-top p.stay:after {
+    content: "";
+    position: absolute;
+    margin: 16px 0 0 40px;
+    width: 150px;
+    height: 1px;
+    background: #fff;
+}
+
+
+.magazine-view .mv-youtube {
+    margin-top: 100px;
+}
+.magazine-view .mv-youtube .youtube-show {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    margin-top: 80px;
+    height: 0;
+    overflow: hidden;
+}
+.magazine-view .mv-youtube .youtube-show iframe,
+.magazine-view .mv-youtube .youtube-show object,
+.magazine-view .mv-youtube .youtube-show embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+
+
+.magazine-view .mdetail_img {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.magazine-view .mdetail_cont {
+    position: relative;
+    max-width: 1330px;
+    padding: 0 20px;
+    margin: 40px auto 0 auto;
+}
+.magazine-view .mdetail_cont:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.magazine-view .mdetail_cont > .tit {
+    font-size: 20px;
+    line-height: 34px;
+    color: #000;
+    float: left;
+    width: 24%;
+    margin-top: -5px;
+}
+.magazine-view .mdetail_cont > .tit > small {
+    font-size: 12px;
+    color: #181818;
+    line-height: 34px;
+    border-bottom: 1px solid #000;
+    letter-spacing: 6px;
+    font-weight: 500;
+    display: inline-block;
+    font-family: 'Abel';
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+.magazine-view .mdetail_cont > .tit > p {
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+}
+.magazine-view .mdetail_cont > .cont {
+    font-size: 14px;
+    line-height: 28px;
+    color: #181818;
+    float: right;
+    width: 74.18%;
+}
+
+
+.magazine-view .mdetail_cont.gmap {
+    margin-top: 100px;
+}
+.magazine-view .mdetail_cont.gmap iframe {
+    width: 100% !important;
+}
+
+
+
+.magazine-view .mv-stay {
+    margin-top: 80px;
+}
+.magazine-view .mv-stay .mvs-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 24%;
+}
+.magazine-view .mv-stay .mvs-info dl {
+    position: relative;
+    width: 464px;
+    margin-left: 24px;
+    display: inline-block;
+    font-size: 15px;
+    vertical-align: top;
+    overflow: hidden;
+}
+.magazine-view .mv-stay .mvs-info dl dt:first-child,
+.magazine-view .mv-stay .mvs-info dl dt:first-child+dd {
+    border-top: 2px solid #000;
+}
+.magazine-view .mv-stay .mvs-info dl > dt {
+    clear: both;
+    float: left;
+    width: 25%;
+    padding: 14px 0;
+    line-height: 1.2;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+.magazine-view .mv-stay .mvs-info dl > dd {
+    position: relative;
+    padding: 14px 0 14px 100px;
+    line-height: 1.2;
+    font-size: 14px;
+    color: #181818;
+}
+.magazine-view .mv-stay .mvs-info dl > dd.eng {
+    font-family: 'Lato';
+}
+.magazine-view .mv-stay .mvs-info hr {
+    display: block;
+    width: 464px;
+    height: 1px;
+    margin: 0;
+    background: #e6e6e6;
+}
+.magazine-view .mv-stay .mvs-btn {
+    position: relative;
+    width: 100%;
+    padding-left: 24%;
+    box-sizing: border-box;
+    margin-top: 50px;
+    text-align: center;
+}
+.magazine-view .mv-stay .mvs-btn a {
+    display: inline-block;
+    width: 210px;
+    height: 44px;
+    padding-top: 11px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #fff;
+    background: #000;
+}
+.magazine-view .mv-stay .mvs-btn a:hover {
+    opacity: 0.8;
+}
+
+
+
+
