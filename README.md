@@ -17,6 +17,11 @@
 
 <br/>
 
+※ 모든 이미지와 내용의 저작권은 스테이폴리오[:link:](https://www.stayfolio.com/)에 있습니다.
+
+<br/>
+<br/>
+
 ## :yellow_circle: Environment
 
 - JAVA (jdk-11.0.16.1)
